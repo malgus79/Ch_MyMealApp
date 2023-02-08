@@ -1,25 +1,23 @@
-package com.mymealapp.ui.fragment
+package com.mymealapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.mymealapp.databinding.FragmentSearchBinding
-import com.mymealapp.ui.adapter.SearchAdapter
+import com.mymealapp.databinding.FragmentMealDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class MealDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchBinding
-    private lateinit var adapterSearch: SearchAdapter
+    private lateinit var binding: FragmentMealDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding = FragmentMealDetailBinding.inflate(inflater, container, false)
 
         return binding.root
     }
