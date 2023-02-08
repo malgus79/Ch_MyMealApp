@@ -14,7 +14,12 @@ import com.mymealapp.ui.fragment.SearchFragmentDirections
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.VieHolder>() {
 
-    private lateinit var mealList: List<Meal>
+    private var mealList = listOf<Meal>()
+
+    fun setMealSearchedList(mealList: List<Meal>) {
+        this.mealList = mealList
+        notifyDataSetChanged()
+    }
 
     inner class VieHolder(private val binding: ItemSearchMealBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -28,18 +33,19 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.VieHolder>() {
                 .centerCrop()
                 .into(binding.imgSearchMeal)
 
+            binding.txtTitle.text = meal.strMeal
+
             binding.mcvSearchImage.setOnClickListener {
                 val action = SearchFragmentDirections.actionSearchFragmentToMealDetailFragment(meal)
                 this.itemView.findNavController().navigate(action)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VieHolder {
-        val binding =
+        val itemBinding =
             ItemSearchMealBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VieHolder(binding)
+        return VieHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: VieHolder, position: Int) {

@@ -7,7 +7,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("search.php")
-    suspend fun getMeals(
-        @Query("s") meal: String,
-    ): MealList?
+    suspend fun getMealsByName(
+        @Query("s") mealSearched: String
+    ): MealList
 }

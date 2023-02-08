@@ -1,5 +1,7 @@
 package com.mymealapp.model.data
 
+import com.google.gson.annotations.SerializedName
+
 data class MealList(
-    val meals: List<Meal>
+    @SerializedName("meals") val meals: List<Meal>
 )

@@ -13,7 +13,6 @@
         android:layout_marginHorizontal="@dimen/common_margin_default"
         android:layout_marginVertical="@dimen/common_margin_min"
         app:cardCornerRadius="@dimen/common_corner_default"
-        app:layout_constraintBottom_toTopOf="@+id/rv_search_meal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,14 +29,14 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-<!--    <include-->
-<!--        android:id="@+id/empty_container"-->
-<!--        layout="@layout/empty_container"-->
-<!--        android:visibility="gone"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/mcv_search_view" />-->
+    <include
+        android:id="@+id/empty_container"
+        layout="@layout/empty_container"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mcv_search_view" />
 
     <ProgressBar
         android:id="@+id/progressBar"

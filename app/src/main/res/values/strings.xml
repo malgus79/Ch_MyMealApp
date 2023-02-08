@@ -5,4 +5,7 @@
     <string name="search_meal">Search meal</string>
     <string name="img_search_meal">Image search meal</string>
     <string name="search_fragment">Search Fragment</string>
+    <string name="search_no_found">No meal found</string>
+    <string name="error_detail">An error occurred while obtaining the information: </string>
+    <string name="fragment_meal_detail">Fragment Meal Detail</string>
 </resources>

@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/common_margin_default"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textSize="@dimen/common_size_default"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/mcv_search_image"
