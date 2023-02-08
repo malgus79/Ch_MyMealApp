@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_margin_default">16dp</dimen>
+    <dimen name="common_margin_min">8dp</dimen>
+    <dimen name="common_corner_default">16dp</dimen>
+    <dimen name="common_padding_min">8dp</dimen>
+    <dimen name="home_image_size">80dp</dimen>
+    <dimen name="common_size_default">20sp</dimen>
+</resources>
