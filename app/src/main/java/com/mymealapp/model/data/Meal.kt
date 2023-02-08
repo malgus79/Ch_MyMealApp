@@ -1,4 +1,4 @@
-package com.mymealapp.model
+package com.mymealapp.model.data
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
