@@ -5,7 +5,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -108,7 +107,7 @@ class DetailMealFragment : Fragment() {
     private fun updateButtonIcon() {
         isFavoriteMeal = isFavoriteMeal ?: return
 
-        binding.fabFavorite.setImageResource (
+        binding.fabFavorite.setImageResource(
             when {
                 isFavoriteMeal!! -> R.drawable.ic_delete
                 else -> R.drawable.ic_add

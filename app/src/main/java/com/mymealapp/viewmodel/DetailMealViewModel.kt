@@ -21,6 +21,6 @@ class DetailMealViewModel @Inject constructor(private val repo: RepositoryImpl) 
         }
     }
 
-    suspend fun isMealFavorite(meal: Meal): Boolean? =
+    suspend fun isMealFavorite(meal: Meal): Boolean =
         repo.isMealFavorite(meal)
 }
