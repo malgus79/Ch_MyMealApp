@@ -1,8 +1,11 @@
 package com.mymealapp.ui.fragment
 
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +51,7 @@ class DetailMealFragment : Fragment() {
         showDetailMeal()
         showYoutubeVideo()
         isFavoriteMeal()
+        onClickShareMeal()
 
         return binding.root
     }
@@ -110,5 +114,28 @@ class DetailMealFragment : Fragment() {
                 else -> R.drawable.ic_add
             }
         )
+    }
+
+    private fun onClickShareMeal() {
+        binding.fabShare.setOnClickListener {
+            try {
+                val bitmapDrawable = binding.imgAppBar.drawable as BitmapDrawable
+                val bitmap = bitmapDrawable.bitmap
+                val bitmapPath =
+                    MediaStore.Images.Media.insertImage(
+                        context?.contentResolver,
+                        bitmap,
+                        "IMAGE" + System.currentTimeMillis(),
+                        null
+                    )
+                val bitmapUri = Uri.parse(bitmapPath.toString())
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_STREAM, bitmapUri)
+                startActivity(Intent.createChooser(intent, "My Meal App"))
+            } catch (e: Exception) {
+                showToast(getString(R.string.share_error))
+            }
+        }
     }
 }

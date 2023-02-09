@@ -22,4 +22,5 @@
     <string name="favorite_fragment">Favorite Fragment</string>
     <string name="search">Search</string>
     <string name="favorite">Favorite</string>
+    <string name="share_error">"Failed to share "</string>
 </resources>
