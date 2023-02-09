@@ -26,14 +26,14 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.VieHolder>() {
 
         fun setData(meal: Meal) {
             Glide.with(binding.root.context)
-                .load(meal.strMealThumb)
+                .load(meal.image)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(R.drawable.gradient)
                 .centerCrop()
                 .into(binding.imgSearchMeal)
 
-            binding.txtTitle.text = meal.strMeal
+            binding.txtTitle.text = meal.name
 
             binding.cvContainer.setOnClickListener {
                 val action = SearchFragmentDirections.actionSearchFragmentToMealDetailFragment(meal)

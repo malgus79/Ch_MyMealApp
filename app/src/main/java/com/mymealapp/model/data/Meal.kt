@@ -6,12 +6,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Meal(
-    @SerializedName("idMeal") val idMeal: String? = "",
-    @SerializedName("strMeal") val strMeal: String? = "",
-    @SerializedName("strCategory") val strCategory: String? = "",
-    @SerializedName("strArea") val strArea: String? = "",
-    @SerializedName("strInstructions") val strInstructions: String? = "",
-    @SerializedName("strMealThumb") val strMealThumb: String? = "",
-    @SerializedName("strTags") val strTags: String? = "",
-    @SerializedName("strYoutube") val strYoutube: String? = ""
+    @SerializedName("idMeal") val idMeal: String,
+    @SerializedName("strMeal") val name: String? = "",
+    @SerializedName("strCategory") val category: String? = "",
+    @SerializedName("strArea") val area: String? = "",
+    @SerializedName("strInstructions") val instructions: String? = "",
+    @SerializedName("strMealThumb") val image: String? = "",
+    @SerializedName("strTags") val tags: String? = "",
+    @SerializedName("strYoutube") val youtube: String? = ""
 ) : Parcelable

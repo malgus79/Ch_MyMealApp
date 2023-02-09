@@ -43,18 +43,18 @@ class DetailMealFragment : Fragment() {
 
     private fun showDetailMeal() {
         Glide.with(binding.root.context)
-            .load(meal.strMealThumb)
+            .load(meal.image)
             .transition(DrawableTransitionOptions.withCrossFade())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .error(R.drawable.gradient)
             .centerCrop()
             .into(binding.imgAppBar)
 
-        val category = "${getString(R.string.category_detail)} ${meal.strCategory} "
-        val area = "${getString(R.string.area_detail)} ${meal.strArea} "
-        binding.toolbar.title = meal.strMeal
+        val category = "${getString(R.string.category_detail)} ${meal.category} "
+        val area = "${getString(R.string.area_detail)} ${meal.area} "
+        binding.toolbar.title = meal.name
         binding.txtCategory.text = category
         binding.txtArea.text = area
-        binding.txtInstructionDescriptions.text = meal.strInstructions
+        binding.txtInstructionDescriptions.text = meal.instructions
     }
 }
