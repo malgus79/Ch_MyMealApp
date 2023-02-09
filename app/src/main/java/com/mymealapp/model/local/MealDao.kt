@@ -2,7 +2,6 @@ package com.mymealapp.model.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.mymealapp.model.data.Meal
 
 @Dao
 interface MealDao {

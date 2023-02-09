@@ -19,4 +19,7 @@
     <string name="added_meal">Added to Favorite</string>
     <string name="item_favorite_image">Item favorite image</string>
     <string name="favorite_title">Favorite</string>
+    <string name="favorite_fragment">Favorite Fragment</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
 </resources>

@@ -46,6 +46,7 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnMealFavoriteClickListener
                     binding.progressBar.show()
                 }
                 is Resource.Success -> {
+                    binding.progressBar.hide()
                     if (it.data.isEmpty()) {
                         binding.rvFavoriteMeal.adapter?.notifyDataSetChanged()
                         binding.rvFavoriteMeal.hide()
