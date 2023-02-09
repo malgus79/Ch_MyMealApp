@@ -71,3 +71,16 @@ fun Meal.asFavoriteEntity(): FavoritesEntity = FavoritesEntity(
     this.tags,
     this.youtube
 )
+
+fun List<FavoritesEntity>.asMealList(): List<Meal> = this.map {
+    Meal(
+        it.idMeal,
+        it.name,
+        it.category,
+        it.area,
+        it.instructions,
+        it.image,
+        it.tags,
+        it.youtube
+    )
+}

@@ -1,6 +1,8 @@
 package com.mymealapp.model.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.mymealapp.model.data.Meal
 
 @Dao
 interface MealDao {
@@ -25,4 +27,7 @@ interface MealDao {
 
     @Query("DELETE FROM meal_entity")
     suspend fun deleteCachedMeal()
+
+    @Query("SELECT * FROM favorites_entity")
+    fun getAllFavoritesMealsWithChanges(): LiveData<List<FavoritesEntity>>
 }

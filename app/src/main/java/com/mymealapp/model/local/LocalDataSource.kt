@@ -1,5 +1,7 @@
 package com.mymealapp.model.local
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import com.mymealapp.model.data.Meal
 import com.mymealapp.model.data.MealList
 import javax.inject.Inject
@@ -29,6 +31,14 @@ class LocalDataSource @Inject constructor(private val dao: MealDao) {
     suspend fun deleteCachedMeal() {
         return dao.deleteCachedMeal()
     }
+
+    fun getFavoritesMeals(): LiveData<List<Meal>> {
+        return dao.getAllFavoritesMealsWithChanges().map {
+            it.asMealList()
+        }
+    }
 }
+
+
 
 

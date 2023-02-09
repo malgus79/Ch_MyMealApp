@@ -23,4 +23,13 @@
             android:name="meal"
             app:argType="com.mymealapp.model.data.Meal" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.mymealapp.ui.fragment.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
 </navigation>

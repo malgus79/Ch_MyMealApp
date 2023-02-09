@@ -1,5 +1,6 @@
 package com.mymealapp.domain
 
+import androidx.lifecycle.LiveData
 import com.mymealapp.model.data.Meal
 import com.mymealapp.model.data.MealList
 import com.mymealapp.model.local.LocalDataSource
@@ -30,6 +31,10 @@ class RepositoryImpl @Inject constructor(
 
     suspend fun saveFavoriteMeal(meal: Meal) {
         localDataSource.saveFavoriteMeal(meal)
+    }
+
+    fun getFavoritesMeals(): LiveData<List<Meal>> {
+        return localDataSource.getFavoritesMeals()
     }
 }
 
