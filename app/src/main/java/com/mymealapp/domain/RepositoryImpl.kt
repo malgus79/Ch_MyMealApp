@@ -13,6 +13,7 @@ class RepositoryImpl @Inject constructor(
     ) {
 
     suspend fun getMealsByName(mealName: String): MealList {
+        localDataSource.deleteCachedMeal()
         remoteDataSource.getMealsByName(mealName).meals.forEach {
             localDataSource.saveMeal(it.toMealEntity())
         }

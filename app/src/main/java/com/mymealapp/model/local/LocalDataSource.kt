@@ -25,6 +25,10 @@ class LocalDataSource @Inject constructor(private val dao: MealDao) {
     suspend fun saveFavoriteMeal(meal: Meal) {
         return dao.saveFavoriteMeal(meal.asFavoriteEntity())
     }
+
+    suspend fun deleteCachedMeal() {
+        return dao.deleteCachedMeal()
+    }
 }
 
 

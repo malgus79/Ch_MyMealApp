@@ -22,4 +22,7 @@ interface MealDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveFavoriteMeal(meal: FavoritesEntity)
+
+    @Query("DELETE FROM meal_entity")
+    suspend fun deleteCachedMeal()
 }
