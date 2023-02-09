@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/mealDetailFragment"
-        android:name="com.mymealapp.ui.fragment.MealDetailFragment"
+        android:name="com.mymealapp.ui.fragment.DetailMealFragment"
         android:label="@string/fragment_meal_detail"
-        tools:layout="@layout/fragment_meal_detail" >
+        tools:layout="@layout/fragment_detail_meal" >
         <argument
             android:name="meal"
             app:argType="com.mymealapp.model.data.Meal" />

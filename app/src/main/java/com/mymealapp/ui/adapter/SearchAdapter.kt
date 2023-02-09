@@ -35,7 +35,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.VieHolder>() {
 
             binding.txtTitle.text = meal.strMeal
 
-            binding.mcvSearchImage.setOnClickListener {
+            binding.cvContainer.setOnClickListener {
                 val action = SearchFragmentDirections.actionSearchFragmentToMealDetailFragment(meal)
                 this.itemView.findNavController().navigate(action)
             }

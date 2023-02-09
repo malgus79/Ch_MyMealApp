@@ -8,4 +8,9 @@
     <string name="search_no_found">No meal found</string>
     <string name="error_detail">An error occurred while obtaining the information: </string>
     <string name="fragment_meal_detail">Fragment Meal Detail</string>
+    <string name="img_app_bar">Image App Bar</string>
+    <string name="fab_favorite">Fab favorite</string>
+    <string name="category_detail">Category:   </string>
+    <string name="area_detail">Area:   </string>
+    <string name="instructions_detail">Instructions:</string>
 </resources>
