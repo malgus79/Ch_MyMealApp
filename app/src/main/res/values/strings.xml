@@ -10,7 +10,9 @@
     <string name="fragment_meal_detail">Fragment Meal Detail</string>
     <string name="img_app_bar">Image App Bar</string>
     <string name="fab_favorite">Fab favorite</string>
-    <string name="category_detail">Category:   </string>
-    <string name="area_detail">Area:   </string>
+    <string name="category_detail">"Category: "</string>
+    <string name="area_detail">"Area: "</string>
+    <string name="tags_detail">"Tags: "</string>
     <string name="instructions_detail">Instructions:</string>
+    <string name="youtube_watch_video">Youtube watch video</string>
 </resources>

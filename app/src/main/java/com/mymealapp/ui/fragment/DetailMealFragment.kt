@@ -1,5 +1,7 @@
 package com.mymealapp.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
+import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentDetailMealBinding
 import com.mymealapp.model.data.Meal
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +40,7 @@ class DetailMealFragment : Fragment() {
         binding = FragmentDetailMealBinding.inflate(inflater, container, false)
 
         showDetailMeal()
+        showYoutubeVideo()
 
         return binding.root
     }
@@ -52,9 +56,21 @@ class DetailMealFragment : Fragment() {
 
         val category = "${getString(R.string.category_detail)} ${meal.category} "
         val area = "${getString(R.string.area_detail)} ${meal.area} "
+        val tags = "${getString(R.string.tags_detail)} ${meal.tags} "
         binding.toolbar.title = meal.name
         binding.txtCategory.text = category
         binding.txtArea.text = area
+        binding.txtTags.text = tags
         binding.txtInstructionDescriptions.text = meal.instructions
+    }
+
+    private fun showYoutubeVideo() {
+        binding.imgYoutubeWatchVideo.setOnClickListener {
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(meal.youtube)))
+            } catch (e: Exception) {
+                showToast("${e.message}")
+            }
+        }
     }
 }
