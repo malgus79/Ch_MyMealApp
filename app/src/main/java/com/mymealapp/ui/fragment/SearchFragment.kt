@@ -46,13 +46,13 @@ class SearchFragment : Fragment() {
                     binding.emptyContainer.root.hide()
                 }
                 is Resource.Success -> {
-                    if (it.data?.meals == null) {
+                    if (it.data.isEmpty()) {
                         binding.rvSearchMeal.hide()
                         binding.emptyContainer.root.show()
                         return@observe
                     }
                     setupRecyclerView()
-                    adapterSearch.setMealSearchedList(it.data.meals)
+                    adapterSearch.setMealSearchedList(it.data)
                     binding.emptyContainer.root.hide()
 
                 }
