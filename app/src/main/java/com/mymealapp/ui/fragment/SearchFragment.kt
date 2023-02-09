@@ -8,6 +8,7 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mymealapp.R
 import com.mymealapp.core.Resource
 import com.mymealapp.core.hide
@@ -66,7 +67,10 @@ class SearchFragment : Fragment() {
     private fun setupRecyclerView() {
         binding.rvSearchMeal.apply {
             adapter = adapterSearch
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = StaggeredGridLayoutManager(
+                resources.getInteger(R.integer.search_columns),
+                StaggeredGridLayoutManager.VERTICAL
+            )
             itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
