@@ -3,6 +3,8 @@ package com.mymealapp.model.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.mymealapp.model.data.Meal
+import com.mymealapp.model.data.MealList
 
 @Entity(tableName = "meal_entity")
 data class MealEntity(
@@ -26,4 +28,46 @@ data class FavoritesEntity(
     @ColumnInfo(name = "strMealThumb") val image: String? = "",
     @ColumnInfo(name = "strTags") val tags: String? = "",
     @ColumnInfo(name = "strYoutube") val youtube: String? = ""
+)
+
+fun List<MealEntity>.toMealList(): MealList {
+    val resultList = mutableListOf<Meal>()
+    this.forEach { mealEntity ->
+        resultList.add(mealEntity.toMeal())
+    }
+    return MealList(resultList)
+}
+
+private fun MealEntity.toMeal(): Meal = Meal(
+    this.idMeal,
+    this.name,
+    this.category,
+    this.area,
+    this.instructions,
+    this.image,
+    this.tags,
+    this.youtube
+)
+
+
+fun Meal.toMealEntity(): MealEntity = MealEntity(
+    this.idMeal,
+    this.name,
+    this.category,
+    this.area,
+    this.instructions,
+    this.image,
+    this.tags,
+    this.youtube
+)
+
+fun Meal.asFavoriteEntity(): FavoritesEntity = FavoritesEntity(
+    this.idMeal,
+    this.name,
+    this.category,
+    this.area,
+    this.instructions,
+    this.image,
+    this.tags,
+    this.youtube
 )

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -14,14 +16,18 @@ import com.mymealapp.R
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentDetailMealBinding
 import com.mymealapp.model.data.Meal
+import com.mymealapp.viewmodel.DetailMealViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailMealFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailMealBinding
+    private val viewModel: DetailMealViewModel by viewModels()
 
     private lateinit var meal: Meal
+    private var isFavoriteMeal: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +47,7 @@ class DetailMealFragment : Fragment() {
 
         showDetailMeal()
         showYoutubeVideo()
+        isFavoriteMeal()
 
         return binding.root
     }
@@ -72,5 +79,36 @@ class DetailMealFragment : Fragment() {
                 showToast("${e.message}")
             }
         }
+    }
+
+    private fun isFavoriteMeal() {
+        binding.fabFavorite.setOnClickListener {
+            val isFavoriteMeal = isFavoriteMeal ?: return@setOnClickListener
+
+            if (isFavoriteMeal) {
+                showToast(getString(R.string.removed_meal))
+            } else {
+                showToast(getString(R.string.added_meal))
+            }
+
+            viewModel.saveOrDeleteFavoriteMeal(meal)
+            this.isFavoriteMeal = !isFavoriteMeal
+            updateButtonIcon()
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            isFavoriteMeal = viewModel.isMealFavorite(meal)
+            updateButtonIcon()
+        }
+    }
+
+    private fun updateButtonIcon() {
+        isFavoriteMeal = isFavoriteMeal ?: return
+
+        binding.fabFavorite.setImageResource (
+            when {
+                isFavoriteMeal!! -> R.drawable.ic_delete
+                else -> R.drawable.ic_add
+            }
+        )
     }
 }

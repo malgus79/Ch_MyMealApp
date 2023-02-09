@@ -15,4 +15,6 @@
     <string name="tags_detail">"Tags: "</string>
     <string name="instructions_detail">Instructions:</string>
     <string name="youtube_watch_video">Youtube watch video</string>
+    <string name="removed_meal">Removed from Favorite</string>
+    <string name="added_meal">Added to Favorite</string>
 </resources>
