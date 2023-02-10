@@ -18,7 +18,6 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.VieHolder>() {
 
     fun setMealSearchedList(mealList: List<Meal>) {
         this.mealList = mealList
-        notifyDataSetChanged()
     }
 
     inner class VieHolder(private val binding: ItemSearchMealBinding) :

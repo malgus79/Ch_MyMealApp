@@ -44,7 +44,6 @@ class CategoriesFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progressBar.hide()
                     if (it.data.categories.isEmpty()) {
-                        binding.rvCategoriesMeal.adapter?.notifyDataSetChanged()
                         binding.rvCategoriesMeal.hide()
                         binding.emptyContainer.root.show()
                         return@observe

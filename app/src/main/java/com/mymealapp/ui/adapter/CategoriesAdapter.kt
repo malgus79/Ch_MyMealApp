@@ -19,7 +19,6 @@ class CategoriesAdapter(
 
     fun setCategoriesList(categoriesList: List<Category>) {
         this.categoriesList = categoriesList
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
