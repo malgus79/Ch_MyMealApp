@@ -22,13 +22,13 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/txt_favorite_title"
+        android:id="@+id/txt_categories_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin_min"
         android:layout_marginTop="@dimen/common_margin_min"
         android:gravity="center"
-        android:text="@string/favorite_title"
+        android:text="@string/categories_title"
         android:textSize="@dimen/common_size_default"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +44,10 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_favorite_title" />
+        app:layout_constraintTop_toBottomOf="@id/txt_categories_title" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_favorite_meal"
+        android:id="@+id/rv_categories_meal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/common_margin_min"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_favorite_title"
-        tools:listitem="@layout/item_favorite_meal"/>
+        app:layout_constraintTop_toBottomOf="@id/txt_categories_title"
+        tools:listitem="@layout/item_categories_meal"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

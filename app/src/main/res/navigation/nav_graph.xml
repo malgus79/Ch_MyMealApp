@@ -18,7 +18,7 @@
         android:id="@+id/mealDetailFragment"
         android:name="com.mymealapp.ui.fragment.DetailMealFragment"
         android:label="@string/fragment_meal_detail"
-        tools:layout="@layout/fragment_detail_meal" >
+        tools:layout="@layout/fragment_detail_meal">
         <argument
             android:name="meal"
             app:argType="com.mymealapp.model.data.Meal" />
@@ -36,7 +36,7 @@
         android:id="@+id/homeFragment"
         android:name="com.mymealapp.ui.fragment.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
@@ -46,5 +46,13 @@
         <action
             android:id="@+id/action_homeFragment_to_mealDetailFragment"
             app:destination="@id/mealDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.mymealapp.ui.fragment.CategoriesFragment"
+        android:label="@string/categories"
+        tools:layout="@layout/fragment_categories" />
 </navigation>

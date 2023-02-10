@@ -2,6 +2,7 @@ package com.mymealapp.domain
 
 import androidx.lifecycle.LiveData
 import com.mymealapp.core.Resource
+import com.mymealapp.model.data.CategoryList
 import com.mymealapp.model.data.Meal
 import com.mymealapp.model.data.MealList
 import com.mymealapp.model.data.asMealEntity
@@ -78,5 +79,10 @@ class RepositoryImpl @Inject constructor(
     /*------------------------------ Random ------------------------------*/
     suspend fun getRandomMeal(): MealList {
         return remoteDataSource.getRandomMeal()
+    }
+
+    /*------------------------------ Categories ------------------------------*/
+    suspend fun getCategoriesMeal(): CategoryList {
+        return remoteDataSource.getCategoriesMeal()
     }
 }

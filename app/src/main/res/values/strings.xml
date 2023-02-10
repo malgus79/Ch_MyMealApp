@@ -26,4 +26,7 @@
     <string name="what_would_you_like_to_eat">What would you like to eat ?</string>
     <string name="img_random_meal">Image random meal</string>
     <string name="tags_no_data">Tags: no data</string>
+    <string name="categories_title">Categories</string>
+    <string name="item_categories_image">Item categories image</string>
+    <string name="categories">Categories</string>
 </resources>
