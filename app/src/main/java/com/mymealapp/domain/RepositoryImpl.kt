@@ -3,6 +3,7 @@ package com.mymealapp.domain
 import androidx.lifecycle.LiveData
 import com.mymealapp.core.Resource
 import com.mymealapp.model.data.Meal
+import com.mymealapp.model.data.MealList
 import com.mymealapp.model.data.asMealEntity
 import com.mymealapp.model.local.LocalDataSource
 import com.mymealapp.model.local.MealEntity
@@ -27,6 +28,7 @@ class RepositoryImpl @Inject constructor(
 //        return localDataSource.getMeals()
 //    }
 
+    /*------------------------------ Search ------------------------------*/
     suspend fun getMealsByName(mealSearched: String?): Flow<Resource<List<Meal>>> =
         callbackFlow {
             trySend(getCachedMeals(mealSearched))
@@ -48,6 +50,7 @@ class RepositoryImpl @Inject constructor(
             awaitClose { cancel() }
         }
 
+    /*------------------------------ Favorites ------------------------------*/
     private suspend fun getCachedMeals(mealSearched: String?): Resource<List<Meal>> {
         return localDataSource.getCachedMeals(mealSearched)
     }
@@ -70,5 +73,10 @@ class RepositoryImpl @Inject constructor(
 
     fun getFavoritesMeals(): LiveData<List<Meal>> {
         return localDataSource.getFavoritesMeals()
+    }
+
+    /*------------------------------ Random ------------------------------*/
+    suspend fun getRandomMeal(): MealList {
+        return remoteDataSource.getRandomMeal()
     }
 }

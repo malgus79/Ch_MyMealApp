@@ -23,4 +23,6 @@
     <string name="favorites">Favorites</string>
     <string name="share_error">"Failed to share "</string>
     <string name="home">Home</string>
+    <string name="what_would_you_like_to_eat">What would you like to eat ?</string>
+    <string name="img_random_meal">Image random meal</string>
 </resources>

@@ -2,6 +2,7 @@ package com.mymealapp.model.remote
 
 import com.mymealapp.core.Resource
 import com.mymealapp.model.data.Meal
+import com.mymealapp.model.data.MealList
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -18,4 +19,8 @@ class RemoteDataSource @Inject constructor(private val api: ApiService) {
             trySend(Resource.Success(api.getMealsByName(mealSearched).meals ?: listOf()))
             awaitClose { close() }
         }
+
+    suspend fun getRandomMeal(): MealList {
+        return api.getRandomMeal()
+    }
 }

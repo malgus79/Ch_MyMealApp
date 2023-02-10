@@ -10,4 +10,7 @@ interface ApiService {
     suspend fun getMealsByName(
         @Query("s") mealSearched: String
     ): MealList
+
+    @GET("random.php")
+    suspend fun getRandomMeal(): MealList
 }

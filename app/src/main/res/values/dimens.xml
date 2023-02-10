@@ -10,4 +10,5 @@
     <dimen name="error_image_size">50dp</dimen>
     <dimen name="common_margin_max">64dp</dimen>
     <dimen name="common_margin_middle">32dp</dimen>
+    <dimen name="common_size_title">25sp</dimen>
 </resources>
