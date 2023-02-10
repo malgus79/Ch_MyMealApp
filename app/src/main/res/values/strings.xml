@@ -25,4 +25,5 @@
     <string name="home">Home</string>
     <string name="what_would_you_like_to_eat">What would you like to eat ?</string>
     <string name="img_random_meal">Image random meal</string>
+    <string name="tags_no_data">Tags: no data</string>
 </resources>
