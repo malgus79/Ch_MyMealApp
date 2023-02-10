@@ -14,9 +14,9 @@
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/common_margin_max"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:visibility="visible">
 
             <ProgressBar
@@ -31,11 +31,11 @@
             android:id="@+id/txt_home"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/home"
             android:layout_marginHorizontal="@dimen/common_margin_min"
+            android:padding="@dimen/common_padding_min"
+            android:text="@string/home"
             android:textSize="@dimen/common_size_title"
             android:textStyle="bold"
-            android:padding="@dimen/common_padding_min"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,26 +51,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_home" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_home_random"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/common_margin_max"
+        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+            android:id="@+id/rv_carousel"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
             android:layout_marginTop="@dimen/common_margin_min"
-            app:cardCornerRadius="@dimen/common_corner_default"
-            app:cardUseCompatPadding="true"
+            android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_title_random">
-
-            <ImageView
-                android:id="@+id/img_random_meal"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:contentDescription="@string/img_random_meal"
-                android:scaleType="centerCrop" />
-
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toBottomOf="@id/txt_title_random" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
