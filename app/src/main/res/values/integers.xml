@@ -3,4 +3,5 @@
     <integer name="search_columns">1</integer>
     <integer name="favorite_columns">2</integer>
     <integer name="categories_columns">1</integer>
+    <integer name="meals_by_category">2</integer>
 </resources>

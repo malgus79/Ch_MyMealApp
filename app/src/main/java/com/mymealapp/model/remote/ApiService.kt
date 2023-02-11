@@ -1,6 +1,8 @@
 package com.mymealapp.model.remote
 
 import com.mymealapp.model.data.CategoryList
+import com.mymealapp.model.data.MealByCategory
+import com.mymealapp.model.data.MealByCategoryList
 import com.mymealapp.model.data.MealList
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -17,5 +19,8 @@ interface ApiService {
 
     @GET("categories.php")
     suspend fun getCategoriesMeal(): CategoryList
+
+    @GET("filter.php")
+    suspend fun getMealByCategory(@Query("c") nameOfCategory: String): MealByCategoryList
 
 }

@@ -22,30 +22,30 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/txt_categories_title"
+        android:id="@+id/txt_meal_by_category_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin_min"
         android:layout_marginTop="@dimen/common_margin_min"
         android:gravity="center"
-        android:text="@string/categories_title"
+        android:text="@string/meal_by_category_title"
         android:textSize="@dimen/common_size_default"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_categories_meal"
+        android:id="@+id/rv_meal_by_category_meal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/common_margin_min"
         android:layout_marginTop="@dimen/common_margin_min"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_categories_title"
-        tools:listitem="@layout/item_categories_meal"/>
+        app:layout_constraintTop_toBottomOf="@id/txt_meal_by_category_title"
+        tools:listitem="@layout/item_meal_by_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

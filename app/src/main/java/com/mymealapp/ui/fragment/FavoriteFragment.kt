@@ -18,6 +18,7 @@ import com.mymealapp.model.data.Meal
 import com.mymealapp.ui.adapter.FavoriteAdapter
 import com.mymealapp.viewmodel.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment(), FavoriteAdapter.OnMealFavoriteClickListener {
@@ -70,6 +71,7 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnMealFavoriteClickListener
                 resources.getInteger(R.integer.favorite_columns),
                 StaggeredGridLayoutManager.VERTICAL
             )
+            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }

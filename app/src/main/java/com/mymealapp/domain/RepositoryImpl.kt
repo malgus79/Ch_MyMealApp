@@ -2,10 +2,7 @@ package com.mymealapp.domain
 
 import androidx.lifecycle.LiveData
 import com.mymealapp.core.Resource
-import com.mymealapp.model.data.CategoryList
-import com.mymealapp.model.data.Meal
-import com.mymealapp.model.data.MealList
-import com.mymealapp.model.data.asMealEntity
+import com.mymealapp.model.data.*
 import com.mymealapp.model.local.LocalDataSource
 import com.mymealapp.model.local.MealEntity
 import com.mymealapp.model.remote.RemoteDataSource
@@ -84,5 +81,10 @@ class RepositoryImpl @Inject constructor(
     /*------------------------------ Categories ------------------------------*/
     suspend fun getCategoriesMeal(): CategoryList {
         return remoteDataSource.getCategoriesMeal()
+    }
+
+    /*------------------------------ Meal by category ------------------------------*/
+    suspend fun getMealByCategory(nameOfCategory: String): MealByCategoryList {
+        return remoteDataSource.getMealByCategory(nameOfCategory)
     }
 }

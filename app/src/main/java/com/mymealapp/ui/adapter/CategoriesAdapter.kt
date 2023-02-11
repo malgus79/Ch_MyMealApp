@@ -10,15 +10,18 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
 import com.mymealapp.databinding.ItemCategoriesMealBinding
 import com.mymealapp.model.data.Category
+import com.mymealapp.model.data.Meal
 
 class CategoriesAdapter(
     private val context: Context,
+    var itemClickListener: OnCategoryClickListener
 ) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     private var categoriesList = listOf<Category>()
 
     fun setCategoriesList(categoriesList: List<Category>) {
         this.categoriesList = categoriesList
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,6 +50,14 @@ class CategoriesAdapter(
 
             binding.txtCategoriesName.text = categories.nameCategory
             binding.txtCategoriesDescription.text = categories.descriptionCategory
+
+            binding.cvContainerItemCategories.setOnClickListener {
+                itemClickListener.onCategoryClick(categories.nameCategory.toString())
+            }
         }
+    }
+
+    interface OnCategoryClickListener {
+        fun onCategoryClick(categoryName: String)
     }
 }

@@ -29,4 +29,7 @@
     <string name="categories_title">Categories</string>
     <string name="item_categories_image">Item categories image</string>
     <string name="categories">Categories</string>
+    <string name="meal_by_category_title">Meal by category</string>
+    <string name="item_meal_by_category_image">Item meal by category image</string>
+    <string name="meal_by_category">Meal By Category</string>
 </resources>

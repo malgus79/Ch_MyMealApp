@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mymealapp.R
 import com.mymealapp.core.Resource
@@ -16,9 +17,10 @@ import com.mymealapp.databinding.FragmentCategoriesBinding
 import com.mymealapp.ui.adapter.CategoriesAdapter
 import com.mymealapp.viewmodel.CategoriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
-class CategoriesFragment : Fragment() {
+class CategoriesFragment : Fragment(), CategoriesAdapter.OnCategoryClickListener {
 
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var adapterCategories: CategoriesAdapter
@@ -29,7 +31,7 @@ class CategoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-        adapterCategories = CategoriesAdapter(requireContext())
+        adapterCategories = CategoriesAdapter(requireContext(), this)
         setupCategoriesMeal()
 
         return binding.root
@@ -45,7 +47,6 @@ class CategoriesFragment : Fragment() {
                     binding.progressBar.hide()
                     if (it.data.categories.isEmpty()) {
                         binding.rvCategoriesMeal.hide()
-                        binding.emptyContainer.root.show()
                         return@observe
                     }
                     adapterCategories.setCategoriesList(it.data.categories)
@@ -66,8 +67,18 @@ class CategoriesFragment : Fragment() {
                 resources.getInteger(R.integer.categories_columns),
                 StaggeredGridLayoutManager.VERTICAL
             )
+            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
+
+            adapterCategories.itemClickListener = this@CategoriesFragment
         }
+    }
+
+    override fun onCategoryClick(categoryName: String) {
+        val action = CategoriesFragmentDirections.actionCategoriesFragmentToMealByCategoryFragment(
+            categoryName
+        )
+        findNavController().navigate(action)
     }
 }
