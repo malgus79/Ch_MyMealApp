@@ -13,14 +13,14 @@ import com.mymealapp.model.data.MealByCategory
 
 class MealByCategoryAdapter(
     private val context: Context,
+    var itemClickListener: OnMealByCategoryClickListener
 ) : RecyclerView.Adapter<MealByCategoryAdapter.ViewHolder>() {
 
     private var mealByCategoryList = listOf<MealByCategory>()
 
     fun setMealByCategoryList(mealByCategoryList: List<MealByCategory>) {
         this.mealByCategoryList = mealByCategoryList
-        notifyDataSetChanged()
-    }
+     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
@@ -47,6 +47,14 @@ class MealByCategoryAdapter(
                 .into(binding.imgMealByCategoryMeal)
 
             binding.txtMealByCategoryName.text = mealByCategory.name
+
+            binding.cvContainerItemMealByCategory.setOnClickListener {
+                itemClickListener.onMealByCategoryClick(mealByCategory)
+            }
         }
+    }
+
+    interface OnMealByCategoryClickListener {
+        fun onMealByCategoryClick(mealByCategory: MealByCategory)
     }
 }

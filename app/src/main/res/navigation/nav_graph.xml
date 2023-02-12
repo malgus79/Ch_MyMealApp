@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/mealDetailFragment"
         android:name="com.mymealapp.ui.fragment.DetailMealFragment"
-        android:label="@string/fragment_meal_detail"
+        android:label="@string/meal_detail"
         tools:layout="@layout/fragment_detail_meal">
         <argument
             android:name="meal"
@@ -66,6 +66,18 @@
         tools:layout="@layout/fragment_meal_by_category">
         <argument
             android:name="name_of_category"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mealByCategoryFragment_to_mealDetailByCategoryFragment"
+            app:destination="@id/mealDetailByCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailByCategoryFragment"
+        android:name="com.mymealapp.ui.fragment.DetailMealByCategoryFragment"
+        android:label="@string/fragment_meal_detail_by_category"
+        tools:layout="@layout/fragment_detail_meal_by_category" >
+        <argument
+            android:name="id_meal"
             app:argType="string" />
     </fragment>
 </navigation>

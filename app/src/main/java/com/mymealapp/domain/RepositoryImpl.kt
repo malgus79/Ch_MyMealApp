@@ -87,4 +87,9 @@ class RepositoryImpl @Inject constructor(
     suspend fun getMealByCategory(nameOfCategory: String): MealByCategoryList {
         return remoteDataSource.getMealByCategory(nameOfCategory)
     }
+
+    /*------------------------------ Detail meal by category ------------------------------*/
+    suspend fun getMealDetailsById(id: String): MealList {
+        return remoteDataSource.getMealDetailsById(id)
+    }
 }

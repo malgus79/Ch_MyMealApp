@@ -73,7 +73,7 @@ class DetailMealFragment : Fragment() {
         binding.txtInstructionDescriptions.text = meal.instructions
 
         if (meal.tags == null) {
-            binding.txtTags.text = "${getString(R.string.tags_no_data)}"
+            binding.txtTags.text = getString(R.string.tags_no_data)
         } else { binding.txtTags.text = tags }
     }
 

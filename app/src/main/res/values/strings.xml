@@ -6,7 +6,6 @@
     <string name="img_search_meal">Image search meal</string>
     <string name="search_no_found">No meal found</string>
     <string name="error_detail">An error occurred while obtaining the information: </string>
-    <string name="fragment_meal_detail">Fragment Meal Detail</string>
     <string name="img_app_bar">Image App Bar</string>
     <string name="fab_favorite">Fab favorite</string>
     <string name="category_detail">"Category: "</string>
@@ -32,4 +31,6 @@
     <string name="meal_by_category_title">Meal by category</string>
     <string name="item_meal_by_category_image">Item meal by category image</string>
     <string name="meal_by_category">Meal By Category</string>
+    <string name="fragment_meal_detail_by_category">Meal detail by category</string>
+    <string name="meal_detail">Meal detail</string>
 </resources>
