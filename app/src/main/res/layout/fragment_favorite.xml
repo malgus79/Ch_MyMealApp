@@ -28,7 +28,7 @@
         android:layout_marginStart="@dimen/common_margin_min"
         android:layout_marginTop="@dimen/common_margin_min"
         android:gravity="center"
-        android:text="@string/favorite_title"
+        android:text="@string/favorites_title"
         android:textSize="@dimen/common_size_default"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

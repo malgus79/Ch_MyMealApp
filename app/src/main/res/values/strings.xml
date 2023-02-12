@@ -16,7 +16,7 @@
     <string name="removed_meal">Removed from Favorite</string>
     <string name="added_meal">Added to Favorite</string>
     <string name="item_favorite_image">Item favorite image</string>
-    <string name="favorite_title">Favorite</string>
+    <string name="favorites_title">Favorites</string>
     <string name="favorite_fragment">Favorite Fragment</string>
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
@@ -28,9 +28,10 @@
     <string name="categories_title">Categories</string>
     <string name="item_categories_image">Item categories image</string>
     <string name="categories">Categories</string>
-    <string name="meal_by_category_title">Meal by category</string>
+    <string name="meal_by_category_title">"Meals by category: "</string>
     <string name="item_meal_by_category_image">Item meal by category image</string>
     <string name="meal_by_category">Meal By Category</string>
     <string name="fragment_meal_detail_by_category">Meal detail by category</string>
     <string name="meal_detail">Meal detail</string>
+    <string name="count_of_meal_by_category">11</string>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_container_item_meal_by_category"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/common_margin_default"
     android:layout_marginVertical="@dimen/common_margin_min"
@@ -16,8 +16,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_meal_by_category_img_meal"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
             android:layout_marginHorizontal="@dimen/common_margin_default"
             android:layout_marginVertical="@dimen/common_margin_default"
             android:clipToPadding="true"
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/item_meal_by_category_image"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher" />
 
         </androidx.cardview.widget.CardView>

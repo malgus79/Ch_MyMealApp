@@ -1,5 +1,6 @@
 package com.mymealapp.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,10 +43,10 @@ class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategor
 
     private fun setupMealByCategories() {
         viewModel.setMealByCategories(args.nameOfCategory)
-        showMealsByCategories()
+        showDataMealsByCategories()
     }
 
-    private fun showMealsByCategories() {
+    private fun showDataMealsByCategories() {
         viewModel.fetchMealByCategories.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
@@ -59,6 +60,8 @@ class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategor
                     }
                     setupMealByCategoryRecyclerView()
                     adapterMealByCategory.setMealByCategoryList(it.data.meals)
+                    countMealByCategories(it.data.meals.size)
+                    showTitleMealByCategory()
                 }
                 is Resource.Failure -> {
                     binding.progressBar.hide()
@@ -84,6 +87,17 @@ class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategor
 
             adapterMealByCategory.itemClickListener = this@MealByCategoryFragment
         }
+    }
+
+    private fun showTitleMealByCategory() {
+        val mealByCategoryTitle =
+            "${getString(R.string.meal_by_category_title)} ${args.nameOfCategory} "
+        binding.txtMealByCategoryTitle.text = mealByCategoryTitle
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun countMealByCategories(size: Int) {
+        binding.txtCountOfMealByCategory.text = "($size)"
     }
 
     override fun onMealByCategoryClick(mealByCategory: MealByCategory) {
