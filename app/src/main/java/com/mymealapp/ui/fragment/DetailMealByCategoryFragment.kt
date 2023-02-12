@@ -139,21 +139,24 @@ class DetailMealByCategoryFragment : Fragment() {
 
     private fun onClickShareMeal() {
         binding.fabShare.setOnClickListener {
-
-            val bitmapDrawable = binding.imgAppBar.drawable as BitmapDrawable
-            val bitmap = bitmapDrawable.bitmap
-            val bitmapPath =
-                MediaStore.Images.Media.insertImage(
-                    context?.contentResolver,
-                    bitmap,
-                    "IMAGE" + System.currentTimeMillis(),
-                    null
-                )
-            val bitmapUri = Uri.parse(bitmapPath.toString())
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_STREAM, bitmapUri)
-            startActivity(Intent.createChooser(intent, "My Meal App"))
+            try {
+                val bitmapDrawable = binding.imgAppBar.drawable as BitmapDrawable
+                val bitmap = bitmapDrawable.bitmap
+                val bitmapPath =
+                    MediaStore.Images.Media.insertImage(
+                        context?.contentResolver,
+                        bitmap,
+                        "IMAGE" + System.currentTimeMillis(),
+                        null
+                    )
+                val bitmapUri = Uri.parse(bitmapPath.toString())
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_STREAM, bitmapUri)
+                startActivity(Intent.createChooser(intent, "My Meal App"))
+            } catch (e: Exception) {
+                showToast(getString(R.string.share_error))
+            }
         }
     }
 }
