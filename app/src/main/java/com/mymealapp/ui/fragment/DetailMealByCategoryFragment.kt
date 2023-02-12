@@ -43,8 +43,8 @@ class DetailMealByCategoryFragment : Fragment() {
 
         isLoading(true)
         setupShowMealDetail()
-        isMealFavorited()
-        updateButtonIcon()
+//        isMealFavorited()
+//        updateButtonIcon()
         onClickShareMeal()
 
         return binding.root
@@ -56,6 +56,8 @@ class DetailMealByCategoryFragment : Fragment() {
             if (it != null) {
                 meal = it
                 loadData(it)
+                isMealFavorited()
+                updateButtonIcon()
             }
         }
     }
@@ -89,13 +91,10 @@ class DetailMealByCategoryFragment : Fragment() {
                     showToast("${e.message}")
                 }
             }
-
             isLoading(false)
         } catch (e: Exception) {
             showToast("${e.message}")
         }
-
-
     }
 
     private fun isLoading(loading: Boolean) {
@@ -103,7 +102,11 @@ class DetailMealByCategoryFragment : Fragment() {
         binding.txtInstructionTitle.isVisible = !loading
         binding.txtCategory.isVisible = !loading
         binding.txtArea.isVisible = !loading
+        binding.txtTags.isVisible = !loading
         binding.txtInstructionDescriptions.isVisible = !loading
+        binding.fabFavorite.isVisible = !loading
+        binding.fabShare.isVisible = !loading
+        binding.imgYoutubeWatchVideo.isVisible = !loading
     }
 
     private fun isMealFavorited() {
@@ -115,7 +118,6 @@ class DetailMealByCategoryFragment : Fragment() {
             } else {
                 showToast(getString(R.string.added_meal))
             }
-
             viewModel.saveOrDeleteFavoriteMeal(meal)
             this.isFavoriteMeal = !isFavoriteMeal
             updateButtonIcon()

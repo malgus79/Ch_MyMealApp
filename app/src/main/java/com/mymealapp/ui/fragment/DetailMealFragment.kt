@@ -74,7 +74,9 @@ class DetailMealFragment : Fragment() {
 
         if (meal.tags == null) {
             binding.txtTags.text = getString(R.string.tags_no_data)
-        } else { binding.txtTags.text = tags }
+        } else {
+            binding.txtTags.text = tags
+        }
     }
 
     private fun showYoutubeVideo() {
