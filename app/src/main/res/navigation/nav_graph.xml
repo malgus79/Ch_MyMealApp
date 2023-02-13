@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_homeFragment_to_categoriesFragment"
             app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailByCategoryFragment"
+            app:destination="@id/mealDetailByCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"

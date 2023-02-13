@@ -8,6 +8,7 @@ import com.mymealapp.model.data.MealList
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val api: ApiService) {
@@ -36,5 +37,9 @@ class RemoteDataSource @Inject constructor(private val api: ApiService) {
 
     suspend fun getMealDetailsById(id: String): MealList {
         return api.getMealDetailsById(id)
+    }
+
+    suspend fun getPopularMeals(categoryName: String): MealByCategoryList {
+        return api.getMealByCategory(categoryName)
     }
 }

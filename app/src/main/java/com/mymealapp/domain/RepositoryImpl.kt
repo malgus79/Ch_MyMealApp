@@ -11,6 +11,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collectLatest
+import retrofit2.Response
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -91,5 +92,10 @@ class RepositoryImpl @Inject constructor(
     /*------------------------------ Detail meal by category ------------------------------*/
     suspend fun getMealDetailsById(id: String): MealList {
         return remoteDataSource.getMealDetailsById(id)
+    }
+
+    /*------------------------------ Popular meals ------------------------------*/
+    suspend fun getPopularMeals(categoryName: String): MealByCategoryList {
+        return remoteDataSource.getPopularMeals(categoryName)
     }
 }

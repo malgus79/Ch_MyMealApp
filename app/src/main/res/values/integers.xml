@@ -4,4 +4,5 @@
     <integer name="favorite_columns">2</integer>
     <integer name="categories_columns">1</integer>
     <integer name="meals_by_category">1</integer>
+    <integer name="main_columns_popular_meals">2</integer>
 </resources>
