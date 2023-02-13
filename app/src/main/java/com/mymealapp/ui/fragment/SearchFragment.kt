@@ -67,7 +67,7 @@ class SearchFragment : Fragment() {
         binding.rvSearchMeal.apply {
             adapter = adapterSearch
             layoutManager = StaggeredGridLayoutManager(
-                resources.getInteger(R.integer.search_columns),
+                resources.getInteger(R.integer.columns_search),
                 StaggeredGridLayoutManager.VERTICAL
             )
             itemAnimator = LandingAnimator().apply { addDuration = 300 }

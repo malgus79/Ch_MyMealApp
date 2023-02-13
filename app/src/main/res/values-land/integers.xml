@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="search_columns">2</integer>
-    <integer name="favorite_columns">4</integer>
-    <integer name="categories_columns">2</integer>
-    <integer name="meals_by_category">2</integer>
+    <integer name="columns_search">2</integer>
+    <integer name="columns_favorite">4</integer>
+    <integer name="columns_categories">2</integer>
+    <integer name="columns_meals_by_category">2</integer>
 </resources>

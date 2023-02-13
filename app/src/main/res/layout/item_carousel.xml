@@ -20,7 +20,7 @@
 
     <com.jackandphantom.carouselrecyclerview.view.ReflectionViewContainer
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="200dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/txt_carousel_name_meal"
         app:reflect_gap="5dp">

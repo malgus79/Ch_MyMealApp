@@ -64,7 +64,7 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnCategoryClickListener
         binding.rvCategoriesMeal.apply {
             adapter = adapterCategories
             layoutManager = StaggeredGridLayoutManager(
-                resources.getInteger(R.integer.categories_columns),
+                resources.getInteger(R.integer.columns_categories),
                 StaggeredGridLayoutManager.VERTICAL
             )
             itemAnimator = LandingAnimator().apply { addDuration = 300 }

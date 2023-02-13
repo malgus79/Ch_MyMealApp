@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="search_columns">1</integer>
-    <integer name="favorite_columns">2</integer>
-    <integer name="categories_columns">1</integer>
-    <integer name="meals_by_category">1</integer>
-    <integer name="main_columns_popular_meals">2</integer>
+    <integer name="columns_search">1</integer>
+    <integer name="columns_favorite">2</integer>
+    <integer name="columns_categories">1</integer>
+    <integer name="columns_meals_by_category">1</integer>
+    <integer name="columns_popular">1</integer>
 </resources>

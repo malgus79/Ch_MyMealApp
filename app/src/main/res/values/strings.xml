@@ -34,4 +34,5 @@
     <string name="fragment_meal_detail_by_category">Meal detail by category</string>
     <string name="meal_detail">Meal detail</string>
     <string name="count_of_meal_by_category">11</string>
+    <string name="title_popular_meals">"Popular Meals: "</string>
 </resources>

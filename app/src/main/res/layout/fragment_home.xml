@@ -54,9 +54,10 @@
         <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
             android:id="@+id/rv_carousel"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/common_margin_min"
+            app:layout_constraintBottom_toTopOf="@id/txt_title_popular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_title_random" />
@@ -65,21 +66,20 @@
             android:id="@+id/txt_title_popular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_margin_middle"
-            android:text="Popular Meals"
-            android:textColor="@color/black_dense"
+            android:layout_marginTop="@dimen/common_margin_default"
+            android:layout_marginStart="@dimen/common_margin_default"
             android:textSize="@dimen/common_size_default"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_carousel" />
+            app:layout_constraintTop_toBottomOf="@id/rv_carousel"
+            tools:text="@string/title_popular_meals" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_popular_meal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_margin_min"
             android:orientation="vertical"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

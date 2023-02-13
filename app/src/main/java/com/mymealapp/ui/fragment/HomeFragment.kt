@@ -25,10 +25,13 @@ import kotlin.random.Random
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
     private lateinit var adapterCarousel: CarouselAdapter
     private val adapterPopular: PopularAdapter = PopularAdapter()
+
     private val mealRandomMutableList: MutableList<MealCarousel> =
         MealCarouselProvider.listRandomMeals.toMutableList()
+
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -58,6 +61,7 @@ class HomeFragment : Fragment() {
             "Miscellaneous", "Pasta", "Pork", "Seafood", "Side", "Starter", "Vegan", "Vegetarian"
         )
         val randomCategory = categoriesNames[Random.nextInt(categoriesNames.size)]
+        val titlePopularMeals = "${getString(R.string.title_popular_meals)} $randomCategory "
 
         viewModel.fetchPopularMeals(randomCategory).observe(viewLifecycleOwner) {
             when (it) {
@@ -72,6 +76,7 @@ class HomeFragment : Fragment() {
                     }
                     setupPopularMealsRecyclerView()
                     adapterPopular.setMealPopularList(it.data.meals)
+                    binding.txtTitlePopular.text = titlePopularMeals
                 }
                 is Resource.Failure -> {
                     binding.progressBar.hide()
@@ -86,7 +91,7 @@ class HomeFragment : Fragment() {
             layoutManager =
                 GridLayoutManager(
                     requireContext(),
-                    resources.getInteger(R.integer.main_columns_popular_meals),
+                    resources.getInteger(R.integer.columns_popular),
                     GridLayoutManager.HORIZONTAL,
                     false
                 )

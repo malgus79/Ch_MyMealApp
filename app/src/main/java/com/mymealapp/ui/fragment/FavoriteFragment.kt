@@ -68,7 +68,7 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnMealFavoriteClickListener
         binding.rvFavoriteMeal.apply {
             adapter = adapterFavorite
             layoutManager = StaggeredGridLayoutManager(
-                resources.getInteger(R.integer.favorite_columns),
+                resources.getInteger(R.integer.columns_favorite),
                 StaggeredGridLayoutManager.VERTICAL
             )
             itemAnimator = LandingAnimator().apply { addDuration = 300 }

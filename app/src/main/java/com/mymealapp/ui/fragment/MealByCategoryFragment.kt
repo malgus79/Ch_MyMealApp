@@ -77,7 +77,7 @@ class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategor
             layoutManager =
                 GridLayoutManager(
                     requireContext(),
-                    resources.getInteger(R.integer.meals_by_category),
+                    resources.getInteger(R.integer.columns_meals_by_category),
                     GridLayoutManager.VERTICAL,
                     false
                 )
