@@ -1,6 +1,8 @@
 package com.mymealapp.ui.fragment.search
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +57,7 @@ class SearchFragment : Fragment() {
 
                 }
                 is Resource.Failure -> {
-                    showToast(getString(R.string.error_detail) + it.exception)
+                    Log.d(TAG, "Error: " + it.exception)
                 }
             }
         }

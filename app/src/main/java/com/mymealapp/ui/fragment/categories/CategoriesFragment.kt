@@ -51,7 +51,7 @@ class CategoriesFragment : Fragment() {
                 }
                 is Resource.Failure -> {
                     binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail) + it.exception)
+                    showToast(getString(R.string.error_detail))
                 }
             }
         }
