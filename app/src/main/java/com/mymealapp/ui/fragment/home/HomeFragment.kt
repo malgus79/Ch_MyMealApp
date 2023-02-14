@@ -9,14 +9,19 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
 import com.mymealapp.core.Resource
 import com.mymealapp.core.hide
 import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentHomeBinding
+import com.mymealapp.model.data.Meal
 import com.mymealapp.ui.fragment.carousel.CarouselAdapter
 import com.mymealapp.ui.fragment.carousel.MealCarousel
 import com.mymealapp.ui.fragment.carousel.MealCarouselProvider
@@ -45,7 +50,8 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         swipeRefresh()
-        setupCarousel()
+//        setupCarousel()
+        setupRandomMeals()
         setupPopularMeals()
         setupCategoriesMeals()
 
@@ -60,7 +66,7 @@ class HomeFragment : Fragment() {
                 ContextCompat.getColor(requireContext(), R.color.grey_loading)
             )
             Handler(Looper.getMainLooper()).postDelayed({
-                setupCarousel()
+                setupRandomMeals()
                 setupPopularMeals()
                 setupCategoriesMeals()
                 binding.swipeRefreshLayout.isRefreshing = false
@@ -68,15 +74,61 @@ class HomeFragment : Fragment() {
         }
     }
 
-    /*------------------------------ Carousel Meals ------------------------------*/
-    private fun setupCarousel() {
-        adapterCarousel = CarouselAdapter(mealRandomMutableList)
-        binding.rvCarousel.apply {
-            this.adapter = adapterCarousel
-            set3DItem(true)
-            setAlpha(true)
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefreshLayout.isRefreshing = false
+    }
+
+    /*------------------------------ Random Meals ------------------------------*/
+    private fun setupRandomMeals() {
+        viewModel.fetchRandomMeal().observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progressBar.show()
+                }
+                is Resource.Success -> {
+                    binding.progressBar.hide()
+                    if (it.data.meals.isEmpty()) {
+                        binding.imgRandomMeal.hide()
+                        return@observe
+                    }
+                    setupShowRandomMeals(it.data.meals.first())
+                }
+                is Resource.Failure -> {
+                    binding.progressBar.hide()
+                    showToast(getString(R.string.error_detail) + it.exception)
+                }
+            }
         }
     }
+
+    private fun setupShowRandomMeals(item: Meal) {
+        Glide.with(binding.root.context)
+            .load(item.image)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .error(R.drawable.gradient)
+            .centerCrop()
+            .into(binding.imgRandomMeal)
+
+        binding.cardViewHomeRandom.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(
+                    item
+                )
+            )
+        }
+    }
+//
+//    /*------------------------------ Carousel Meals ------------------------------*/
+//    private fun setupCarousel() {
+//        adapterCarousel = CarouselAdapter(mealRandomMutableList)
+//        binding.rvCarousel.apply {
+//            this.adapter = adapterCarousel
+//            set3DItem(true)
+//            setAlpha(true)
+//        }
+//    }
 
     /*------------------------------ Popular Meals ------------------------------*/
     private fun setupPopularMeals() {
@@ -104,6 +156,7 @@ class HomeFragment : Fragment() {
                 }
                 is Resource.Failure -> {
                     binding.progressBar.hide()
+                    showToast(getString(R.string.error_detail) + it.exception)
                 }
             }
         }

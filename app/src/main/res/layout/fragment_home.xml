@@ -2,9 +2,9 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipe_refresh_layout"
     tools:context=".ui.fragment.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -48,7 +48,6 @@
                 android:id="@+id/txt_title_random"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/common_margin_min"
                 android:text="@string/what_would_you_like_to_eat"
                 android:textSize="@dimen/common_size_normal"
                 android:textStyle="bold"
@@ -56,16 +55,37 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_home" />
 
-            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
-                android:id="@+id/rv_carousel"
-                android:layout_width="0dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center"
+            <!--            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview-->
+            <!--                android:id="@+id/rv_carousel"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="250dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="@dimen/common_margin_min"-->
+            <!--                app:layout_constraintBottom_toTopOf="@id/txt_title_popular"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/txt_title_random" />-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_home_random"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="@dimen/common_margin_max"
                 android:layout_marginTop="@dimen/common_margin_min"
-                app:layout_constraintBottom_toTopOf="@id/txt_title_popular"
+                app:cardCornerRadius="@dimen/common_corner_default"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_random" />
+                app:layout_constraintTop_toBottomOf="@id/txt_title_random">
+
+                <ImageView
+                    android:id="@+id/img_random_meal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/img_random_meal"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/txt_title_popular"
@@ -78,7 +98,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_carousel"
+                app:layout_constraintTop_toBottomOf="@id/card_view_home_random"
                 tools:text="@string/title_popular_meals" />
 
             <androidx.recyclerview.widget.RecyclerView
