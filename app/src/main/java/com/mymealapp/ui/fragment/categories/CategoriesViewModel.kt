@@ -1,4 +1,4 @@
-package com.mymealapp.viewmodel
+package com.mymealapp.ui.fragment.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

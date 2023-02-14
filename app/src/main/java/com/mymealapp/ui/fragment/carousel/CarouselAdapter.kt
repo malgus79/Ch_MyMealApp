@@ -1,11 +1,10 @@
-package com.mymealapp.ui.adapter
+package com.mymealapp.ui.fragment.carousel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mymealapp.databinding.ItemCarouselBinding
-import com.mymealapp.ui.fragment.carousel.MealCarousel
 
 class CarouselAdapter(private var listCarousel: List<MealCarousel>) :
     RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {

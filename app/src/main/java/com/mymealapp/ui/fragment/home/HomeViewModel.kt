@@ -1,4 +1,4 @@
-package com.mymealapp.viewmodel
+package com.mymealapp.ui.fragment.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -30,4 +30,13 @@ class HomeViewModel @Inject constructor(private val repo: RepositoryImpl) : View
                 emit(Resource.Failure(e))
             }
         }
+
+    fun fetchCategoriesMeal() = liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repo.getCategoriesMeal()))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
+    }
 }

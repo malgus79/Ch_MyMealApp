@@ -1,4 +1,4 @@
-package com.mymealapp.ui.adapter
+package com.mymealapp.ui.fragment.categories
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
 import com.mymealapp.databinding.ItemCategoriesMealBinding
 import com.mymealapp.model.data.Category
-import com.mymealapp.model.data.Meal
 
 class CategoriesAdapter(
     private val context: Context,

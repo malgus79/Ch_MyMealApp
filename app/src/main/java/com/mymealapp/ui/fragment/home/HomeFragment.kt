@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment
+package com.mymealapp.ui.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +12,9 @@ import com.mymealapp.core.Resource
 import com.mymealapp.core.hide
 import com.mymealapp.core.show
 import com.mymealapp.databinding.FragmentHomeBinding
-import com.mymealapp.ui.adapter.CarouselAdapter
-import com.mymealapp.ui.adapter.PopularAdapter
+import com.mymealapp.ui.fragment.carousel.CarouselAdapter
 import com.mymealapp.ui.fragment.carousel.MealCarousel
 import com.mymealapp.ui.fragment.carousel.MealCarouselProvider
-import com.mymealapp.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 import kotlin.random.Random
