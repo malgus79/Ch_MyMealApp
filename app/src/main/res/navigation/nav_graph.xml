@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mealDetailByCategoryFragment"
             app:destination="@id/mealDetailByCategoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mealByCategoryFragment"
+            app:destination="@id/mealByCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
