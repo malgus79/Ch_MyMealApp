@@ -3,25 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_container_item_categories"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/common_margin_min"
-    android:layout_marginVertical="@dimen/common_margin_min"
-    android:backgroundTint="@color/grey_dark"
-    app:cardCornerRadius="@dimen/common_corner_default">
+    android:clipToPadding="true"
+    android:layout_margin="@dimen/common_margin_min"
+    android:background="@color/grey_loading"
+    app:cardCornerRadius="@dimen/common_corner_middle">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/grey_loading">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_categories_img_meal"
-            android:layout_width="100dp"
-            android:layout_height="130dp"
-            android:layout_marginHorizontal="@dimen/common_margin_default"
-            android:layout_marginVertical="@dimen/common_margin_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/common_padding_min"
+            android:elevation="@dimen/common_margin_default"
             android:clipToPadding="true"
-            app:cardCornerRadius="@dimen/common_corner_default"
+            app:cardCornerRadius="@dimen/common_corner_middle"
+            android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,11 +31,14 @@
             <ImageView
                 android:id="@+id/img_categories_meal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/item_in_home_categories_image"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -45,7 +50,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/common_size_normal"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
