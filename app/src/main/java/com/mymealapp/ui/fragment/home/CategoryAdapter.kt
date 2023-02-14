@@ -1,8 +1,8 @@
 package com.mymealapp.ui.fragment.home
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -11,10 +11,7 @@ import com.mymealapp.R
 import com.mymealapp.databinding.ItemInHomeCategoriesMealBinding
 import com.mymealapp.model.data.Category
 
-class CategoryAdapter(
-    private val context: Context,
-    var itemClickListener: OnCategoryClickListener
-) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     private var categoryList = listOf<Category>()
 
@@ -25,7 +22,7 @@ class CategoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            ItemInHomeCategoriesMealBinding.inflate(LayoutInflater.from(context), parent, false)
+            ItemInHomeCategoriesMealBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
@@ -39,7 +36,7 @@ class CategoryAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(category: Category) {
-            Glide.with(context)
+            Glide.with(binding.root.context)
                 .load(category.imageCategory)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -50,12 +47,12 @@ class CategoryAdapter(
             binding.txtCategoriesName.text = category.nameCategory
 
             binding.cvContainerItemCategories.setOnClickListener {
-                itemClickListener.onCategoryClick(category.nameCategory.toString())
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToMealByCategoryFragment(
+                        category.nameCategory.toString()
+                    )
+                this.itemView.findNavController().navigate(action)
             }
         }
-    }
-
-    interface OnCategoryClickListener {
-        fun onCategoryClick(categoryName: String)
     }
 }

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mymealapp.R
@@ -18,19 +17,18 @@ import com.mymealapp.databinding.FragmentHomeBinding
 import com.mymealapp.ui.fragment.carousel.CarouselAdapter
 import com.mymealapp.ui.fragment.carousel.MealCarousel
 import com.mymealapp.ui.fragment.carousel.MealCarouselProvider
-import com.mymealapp.ui.fragment.categories.CategoriesFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 import kotlin.random.Random
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), CategoryAdapter.OnCategoryClickListener {
+class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var adapterCarousel: CarouselAdapter
-    private lateinit var adapterPopular: PopularAdapter
-    private lateinit var adapterCategory: CategoryAdapter
+    private val adapterPopular: PopularAdapter = PopularAdapter()
+    private val adapterCategory: CategoryAdapter = CategoryAdapter()
 
     private val mealRandomMutableList: MutableList<MealCarousel> =
         MealCarouselProvider.listRandomMeals.toMutableList()
@@ -42,8 +40,6 @@ class HomeFragment : Fragment(), CategoryAdapter.OnCategoryClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        adapterPopular = PopularAdapter()
-        adapterCategory = CategoryAdapter(requireContext(), this)
 
         setupCarousel()
         setupPopularMeals()
@@ -143,15 +139,6 @@ class HomeFragment : Fragment(), CategoryAdapter.OnCategoryClickListener {
             itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
-
-            adapterCategory.itemClickListener = this@HomeFragment
         }
     }
-
-    override fun onCategoryClick(categoryName: String) {
-        val action = HomeFragmentDirections.actionHomeFragmentToMealByCategoryFragment(
-            categoryName
-        )
-        findNavController().navigate(action)
-   }
 }
