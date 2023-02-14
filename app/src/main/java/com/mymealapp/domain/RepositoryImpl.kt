@@ -11,13 +11,12 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collectLatest
-import retrofit2.Response
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
-) {
+) : RepositoryInterface {
 
 //    suspend fun getMealsByName(mealName: String): MealList {
 //        localDataSource.deleteCachedMeal()
@@ -28,7 +27,7 @@ class RepositoryImpl @Inject constructor(
 //    }
 
     /*------------------------------ Search ------------------------------*/
-    suspend fun getMealsByName(mealSearched: String?): Flow<Resource<List<Meal>>> =
+    override suspend fun getMealsByName(mealSearched: String?): Flow<Resource<List<Meal>>> =
         callbackFlow {
             trySend(getCachedMeals(mealSearched))
 
@@ -58,44 +57,44 @@ class RepositoryImpl @Inject constructor(
         localDataSource.saveMeal(meal)
     }
 
-    suspend fun isMealFavorite(meal: Meal): Boolean {
+    override suspend fun isMealFavorite(meal: Meal): Boolean {
         return localDataSource.isMealFavorite(meal)
     }
 
-    suspend fun deleteFavoriteMeal(meal: Meal) {
+    override suspend fun deleteFavoriteMeal(meal: Meal) {
         localDataSource.deleteMeal(meal)
     }
 
-    suspend fun saveFavoriteMeal(meal: Meal) {
+    override suspend fun saveFavoriteMeal(meal: Meal) {
         localDataSource.saveFavoriteMeal(meal)
     }
 
-    fun getFavoritesMeals(): LiveData<List<Meal>> {
+    override fun getFavoritesMeals(): LiveData<List<Meal>> {
         return localDataSource.getFavoritesMeals()
     }
 
     /*------------------------------ Random ------------------------------*/
-    suspend fun getRandomMeal(): MealList {
+    override suspend fun getRandomMeal(): MealList {
         return remoteDataSource.getRandomMeal()
     }
 
     /*------------------------------ Categories ------------------------------*/
-    suspend fun getCategoriesMeal(): CategoryList {
+    override suspend fun getCategoriesMeal(): CategoryList {
         return remoteDataSource.getCategoriesMeal()
     }
 
     /*------------------------------ Meal by category ------------------------------*/
-    suspend fun getMealByCategory(nameOfCategory: String): MealByCategoryList {
+    override suspend fun getMealByCategory(nameOfCategory: String): MealByCategoryList {
         return remoteDataSource.getMealByCategory(nameOfCategory)
     }
 
     /*------------------------------ Detail meal by category ------------------------------*/
-    suspend fun getMealDetailsById(id: String): MealList {
+    override suspend fun getMealDetailsById(id: String): MealList {
         return remoteDataSource.getMealDetailsById(id)
     }
 
     /*------------------------------ Popular meals ------------------------------*/
-    suspend fun getPopularMeals(categoryName: String): MealByCategoryList {
+    override suspend fun getPopularMeals(categoryName: String): MealByCategoryList {
         return remoteDataSource.getPopularMeals(categoryName)
     }
 }
