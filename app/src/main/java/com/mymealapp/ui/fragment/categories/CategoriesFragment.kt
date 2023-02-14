@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mymealapp.R
 import com.mymealapp.core.Resource
@@ -18,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
-class CategoriesFragment : Fragment(), CategoriesAdapter.OnCategoryClickListener {
+class CategoriesFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var adapterCategories: CategoriesAdapter
@@ -29,7 +28,7 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnCategoryClickListener
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-        adapterCategories = CategoriesAdapter(requireContext(), this)
+        adapterCategories = CategoriesAdapter()
         setupCategoriesMeal()
 
         return binding.root
@@ -68,15 +67,6 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnCategoryClickListener
             itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
-
-            adapterCategories.itemClickListener = this@CategoriesFragment
         }
-    }
-
-    override fun onCategoryClick(categoryName: String) {
-        val action = CategoriesFragmentDirections.actionCategoriesFragmentToMealByCategoryFragment(
-            categoryName
-        )
-        findNavController().navigate(action)
     }
 }
