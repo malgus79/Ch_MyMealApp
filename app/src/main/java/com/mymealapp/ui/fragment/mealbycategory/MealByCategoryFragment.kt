@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mymealapp.R
@@ -16,15 +15,14 @@ import com.mymealapp.core.hide
 import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentMealByCategoryBinding
-import com.mymealapp.model.data.MealByCategory
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
-class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategoryClickListener {
+class MealByCategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentMealByCategoryBinding
-    private lateinit var adapterMealByCategory: MealByCategoryAdapter
+    private val adapterMealByCategory: MealByCategoryAdapter = MealByCategoryAdapter()
     private val args by navArgs<MealByCategoryFragmentArgs>()
     private val viewModel: MealByCategoryViewModel by viewModels()
 
@@ -33,7 +31,7 @@ class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategor
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMealByCategoryBinding.inflate(inflater, container, false)
-        adapterMealByCategory = MealByCategoryAdapter(requireContext(), this)
+
         setupMealByCategories()
 
         return binding.root
@@ -82,8 +80,6 @@ class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategor
             itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
-
-            adapterMealByCategory.itemClickListener = this@MealByCategoryFragment
         }
     }
 
@@ -96,18 +92,5 @@ class MealByCategoryFragment : Fragment(), MealByCategoryAdapter.OnMealByCategor
     @SuppressLint("SetTextI18n")
     private fun countMealByCategories(size: Int) {
         binding.txtCountOfMealByCategory.text = "($size)"
-    }
-
-    override fun onMealByCategoryClick(mealByCategory: MealByCategory) {
-        goToDetailMealByCategoryFragment(mealByCategory.idMeal.toString())
-
-    }
-
-    private fun goToDetailMealByCategoryFragment(idMeal: String) {
-        val action =
-            MealByCategoryFragmentDirections.actionMealByCategoryFragmentToMealDetailByCategoryFragment(
-                idMeal,
-            )
-        findNavController().navigate(action)
     }
 }
