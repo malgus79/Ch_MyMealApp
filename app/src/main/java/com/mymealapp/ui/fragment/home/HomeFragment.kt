@@ -31,12 +31,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    //    private lateinit var adapterCarousel: CarouselAdapter
     private val adapterPopular: PopularAdapter = PopularAdapter()
     private val adapterCategory: CategoryAdapter = CategoryAdapter()
-
-//    private val mealRandomMutableList: MutableList<MealCarousel> =
-//        MealCarouselProvider.listRandomMeals.toMutableList()
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -48,24 +44,22 @@ class HomeFragment : Fragment() {
 
         swipeRefresh()
         setupAllMealsInHome()
-//        setupCarousel()
-//        setupRandomMeals()
-//        setupPopularMeals()
-//        setupCategoriesMeals()
-
 
         return binding.root
     }
 
     private fun swipeRefresh() {
         binding.swipeRefreshLayout.setOnRefreshListener {
-            binding.swipeRefreshLayout.setColorSchemeResources(R.color.purple_700)
+            binding.swipeRefreshLayout.setColorSchemeResources(
+                R.color.purple_700,
+                R.color.red_theme,
+                R.color.green_dark_theme
+            )
             binding.swipeRefreshLayout.setProgressBackgroundColorSchemeColor(
                 ContextCompat.getColor(requireContext(), R.color.grey_loading)
             )
             Handler(Looper.getMainLooper()).postDelayed({
                 setupAllMealsInHome()
-                binding.swipeRefreshLayout.isRefreshing = false
             }, 500)
         }
     }
@@ -90,52 +84,34 @@ class HomeFragment : Fragment() {
                     binding.progressBar.show()
                 }
                 is Resource.Success -> {
+                    binding.swipeRefreshLayout.isRefreshing = false
                     binding.progressBar.hide()
-                    binding.txtTitleHome.show()
+                    showTitlesInHome(titlePopularMeals)
 
                     setupShowRandomMeals(it.data.first.meals.first())
-                    binding.txtTitleRandom.show()
-                    binding.cardViewHomeRandom.show()
 
                     setupPopularMealsRecyclerView()
                     adapterPopular.setMealPopularList(it.data.second.meals)
-                    binding.txtTitlePopular.text = titlePopularMeals
 
                     setupCategoriesRecyclerView()
                     adapterCategory.setCategoryList(it.data.third.categories)
-                    binding.txtTitleCategories.show()
                 }
                 is Resource.Failure -> {
+                    binding.swipeRefreshLayout.isRefreshing = false
                     binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail) + it.exception)
+                    showToast(getString(R.string.error_detail))
                 }
             }
         }
     }
 
-
-    /*------------------------------ Random Meals ------------------------------*/
-//    private fun setupRandomMeals() {
-//        viewModel.fetchRandomMeal().observe(viewLifecycleOwner) {
-//            when (it) {
-//                is Resource.Loading -> {
-//                    binding.progressBar.show()
-//                }
-//                is Resource.Success -> {
-//                    binding.progressBar.hide()
-//                    if (it.data.meals.isEmpty()) {
-//                        binding.imgRandomMeal.hide()
-//                        return@observe
-//                    }
-//                    setupShowRandomMeals(it.data.meals.first())
-//                }
-//                is Resource.Failure -> {
-//                    binding.progressBar.hide()
-//                    showToast(getString(R.string.error_detail) + it.exception)
-//                }
-//            }
-//        }
-//    }
+    private fun showTitlesInHome(titlePopularMeals: String) {
+        binding.txtTitleHome.show()
+        binding.txtTitleRandom.show()
+        binding.cardViewHomeRandom.show()
+        binding.txtTitlePopular.text = titlePopularMeals
+        binding.txtTitleCategories.show()
+    }
 
     private fun setupShowRandomMeals(item: Meal) {
         Glide.with(binding.root.context)
@@ -155,48 +131,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    /*------------------------------ Carousel Meals ------------------------------*/
-//    private fun setupCarousel() {
-//        adapterCarousel = CarouselAdapter(mealRandomMutableList)
-//        binding.rvCarousel.apply {
-//            this.adapter = adapterCarousel
-//            set3DItem(true)
-//            setAlpha(true)
-//        }
-//    }
-
-    /*------------------------------ Popular Meals ------------------------------*/
-//    private fun setupPopularMeals() {
-//        val categoriesNames = arrayOf(
-//            "Beef", "Breakfast", "Chicken", "Dessert", "Goat", "Lamb",
-//            "Miscellaneous", "Pasta", "Pork", "Seafood", "Side", "Starter", "Vegan", "Vegetarian"
-//        )
-//        val randomCategory = categoriesNames[Random.nextInt(categoriesNames.size)]
-//        val titlePopularMeals = "${getString(R.string.title_popular_meals)} $randomCategory "
-//
-//        viewModel.fetchPopularMeals(randomCategory).observe(viewLifecycleOwner) {
-//            when (it) {
-//                is Resource.Loading -> {
-//                    binding.progressBar.show()
-//                }
-//                is Resource.Success -> {
-//                    binding.progressBar.hide()
-//                    if (it.data.meals.isEmpty()) {
-//                        binding.rvPopularMeal.hide()
-//                        return@observe
-//                    }
-//                    setupPopularMealsRecyclerView()
-//                    adapterPopular.setMealPopularList(it.data.meals)
-//                    binding.txtTitlePopular.text = titlePopularMeals
-//                }
-//                is Resource.Failure -> {
-//                    binding.progressBar.hide()
-//                    showToast(getString(R.string.error_detail) + it.exception)
-//                }
-//            }
-//        }
-//    }
-
     private fun setupPopularMealsRecyclerView() {
         binding.rvPopularMeal.apply {
             adapter = adapterPopular
@@ -212,31 +146,6 @@ class HomeFragment : Fragment() {
             show()
         }
     }
-
-    /*------------------------------ Categories Meals ------------------------------*/
-//    private fun setupCategoriesMeals() {
-//        viewModel.fetchCategoriesMeal().observe(viewLifecycleOwner) {
-//            when (it) {
-//                is Resource.Loading -> {
-//                    binding.progressBar.show()
-//                }
-//                is Resource.Success -> {
-//                    binding.progressBar.hide()
-//                    if (it.data.categories.isEmpty()) {
-//                        binding.rvCategoriesMeal.hide()
-//                        return@observe
-//                    }
-//                    adapterCategory.setCategoryList(it.data.categories)
-//                    setupCategoriesRecyclerView()
-//                    binding.txtTitleCategories.show()
-//                }
-//                is Resource.Failure -> {
-//                    binding.progressBar.hide()
-//                    showToast(getString(R.string.error_detail) + it.exception)
-//                }
-//            }
-//        }
-//    }
 
     private fun setupCategoriesRecyclerView() {
         binding.rvCategoriesMeal.apply {
