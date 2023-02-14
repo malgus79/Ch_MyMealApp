@@ -1,9 +1,12 @@
 package com.mymealapp.ui.fragment.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -41,6 +44,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        swipeRefresh()
         setupCarousel()
         setupPopularMeals()
         setupCategoriesMeals()
@@ -48,6 +52,23 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    /*------------------------------ Swipe Refresh ------------------------------*/
+    private fun swipeRefresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.setColorSchemeResources(R.color.purple_700)
+            binding.swipeRefreshLayout.setProgressBackgroundColorSchemeColor(
+                ContextCompat.getColor(requireContext(), R.color.grey_loading)
+            )
+            Handler(Looper.getMainLooper()).postDelayed({
+                setupCarousel()
+                setupPopularMeals()
+                setupCategoriesMeals()
+                binding.swipeRefreshLayout.isRefreshing = false
+            }, 500)
+        }
+    }
+
+    /*------------------------------ Carousel Meals ------------------------------*/
     private fun setupCarousel() {
         adapterCarousel = CarouselAdapter(mealRandomMutableList)
         binding.rvCarousel.apply {
