@@ -7,13 +7,12 @@
     android:layout_height="wrap_content"
     android:clipToPadding="true"
     android:layout_margin="@dimen/common_margin_min"
-    android:background="@color/grey_loading"
     app:cardCornerRadius="@dimen/common_corner_middle">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_loading">
+        android:background="@color/green_material_900">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_categories_img_meal"
@@ -50,7 +49,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="@dimen/common_size_normal"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

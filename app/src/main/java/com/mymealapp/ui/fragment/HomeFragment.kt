@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
             binding.swipeRefreshLayout.setColorSchemeResources(
                 R.color.purple_700,
                 R.color.red_theme,
-                R.color.green_dark_theme
+                R.color.green_normal_theme
             )
             binding.swipeRefreshLayout.setProgressBackgroundColorSchemeColor(
                 ContextCompat.getColor(requireContext(), R.color.grey_loading)

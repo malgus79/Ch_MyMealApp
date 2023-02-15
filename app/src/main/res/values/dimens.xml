@@ -15,4 +15,5 @@
     <dimen name="common_padding_default">16dp</dimen>
     <dimen name="common_corner_middle">32dp</dimen>
     <dimen name="common_margin_item">4dp</dimen>
+    <dimen name="common_margin_btn_nav">.5dp</dimen>
 </resources>

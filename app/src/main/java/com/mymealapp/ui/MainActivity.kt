@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(binding.root, R.string.connection_restored, Snackbar.LENGTH_SHORT)
             .setAnchorView(binding.bottomNavigationView)
             .setBackgroundTint(
-                ContextCompat.getColor(this@MainActivity, R.color.green_dark_theme)
+                ContextCompat.getColor(this@MainActivity, R.color.green_normal_theme)
             )
             .show()
     }

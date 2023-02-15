@@ -23,14 +23,15 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginTop="@dimen/common_margin_min"
         app:menu="@menu/bottom_navigation_menu"
+        android:layout_marginTop="@dimen/common_margin_btn_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nav_host_fragment"
         app:labelVisibilityMode="selected"
-        app:itemRippleColor="@color/green_met" />
-
+        app:itemBackground="?colorPrimary"
+        app:itemIconTint="?colorOnPrimary"
+        app:itemTextColor="?colorOnPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
