@@ -81,6 +81,7 @@ class HomeFragment : Fragment() {
         viewModel.fetchAllMealsInHome(randomCategory).observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
+                    binding.swipeRefreshLayout.isRefreshing = false
                     binding.progressBar.show()
                 }
                 is Resource.Success -> {
