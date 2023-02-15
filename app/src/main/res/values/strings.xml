@@ -36,4 +36,7 @@
     <string name="count_of_meal_by_category">11</string>
     <string name="title_popular_meals">"Popular Meals: "</string>
     <string name="item_in_home_categories_image">Item in home categories image</string>
+    <string name="connection_restored">Connection has been restored</string>
+    <string name="no_connection">No internet connection</string>
+    <string name="rule_out">Rule Out</string>
 </resources>
