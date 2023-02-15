@@ -85,7 +85,8 @@ class MealByCategoryFragment : Fragment() {
 
     private fun showTitleMealByCategory() {
         val mealByCategoryTitle =
-            "${getString(R.string.meal_by_category_title)} ${args.nameOfCategory} "
+            //"${getString(R.string.meal_by_category_title)} " +
+            "${args.nameOfCategory} "
         binding.txtMealByCategoryTitle.text = mealByCategoryTitle
     }
 

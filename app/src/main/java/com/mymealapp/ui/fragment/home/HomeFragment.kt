@@ -107,7 +107,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun showTitlesInHome(titlePopularMeals: String) {
-        binding.txtTitleHome.show()
+        //binding.txtTitleHome.show()
         binding.txtTitleRandom.show()
         binding.cardViewHomeRandom.show()
         binding.txtTitlePopular.text = titlePopularMeals

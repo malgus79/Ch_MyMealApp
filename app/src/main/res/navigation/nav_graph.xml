@@ -80,7 +80,7 @@
     <fragment
         android:id="@+id/mealDetailByCategoryFragment"
         android:name="com.mymealapp.ui.fragment.detail.DetailMealByCategoryFragment"
-        android:label="@string/fragment_meal_detail_by_category"
+        android:label="@string/meal_detail"
         tools:layout="@layout/fragment_detail_meal_by_category" >
         <argument
             android:name="id_meal"
