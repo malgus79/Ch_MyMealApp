@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyMealApp</string>
+    <string name="app_name">Meal App</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_meal">Search meal</string>
@@ -31,7 +31,7 @@
     <string name="meal_by_category_title">"Meals by category: "</string>
     <string name="item_meal_by_category_image">Item meal by category image</string>
     <string name="meal_by_category">Meal By Category</string>
-<!--    <string name="fragment_meal_detail_by_category">Meal detail by category</string>-->
+    <!--    <string name="fragment_meal_detail_by_category">Meal detail by category</string>-->
     <string name="meal_detail">Meal detail</string>
     <string name="count_of_meal_by_category">11</string>
     <string name="title_popular_meals">"Popular Meals: "</string>
@@ -39,4 +39,5 @@
     <string name="connection_restored">Connection has been restored</string>
     <string name="no_connection">No internet connection</string>
     <string name="rule_out">Rule Out</string>
+    <string name="logo_splash">Logo splash</string>
 </resources>
