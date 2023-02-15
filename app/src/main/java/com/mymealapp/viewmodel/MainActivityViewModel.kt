@@ -1,4 +1,4 @@
-package com.mymealapp.ui
+package com.mymealapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.mymealapp.core.ConnectivityNetwork

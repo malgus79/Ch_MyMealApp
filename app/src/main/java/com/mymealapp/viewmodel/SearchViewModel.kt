@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment.search
+package com.mymealapp.viewmodel
 
 import androidx.lifecycle.*
 import com.mymealapp.core.Resource

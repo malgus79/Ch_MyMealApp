@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment.detail
+package com.mymealapp.ui.fragment
 
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
@@ -18,6 +18,7 @@ import com.mymealapp.R
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentDetailMealBinding
 import com.mymealapp.model.data.Meal
+import com.mymealapp.viewmodel.DetailMealViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

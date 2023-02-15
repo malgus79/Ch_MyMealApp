@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment.detail
+package com.mymealapp.viewmodel
 
 import android.content.ContentValues.TAG
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment.favorite
+package com.mymealapp.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +15,8 @@ import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentFavoriteBinding
 import com.mymealapp.model.data.Meal
+import com.mymealapp.ui.adapter.FavoriteAdapter
+import com.mymealapp.viewmodel.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 

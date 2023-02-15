@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment.mealbycategory
+package com.mymealapp.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -15,6 +15,8 @@ import com.mymealapp.core.hide
 import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentMealByCategoryBinding
+import com.mymealapp.ui.adapter.MealByCategoryAdapter
+import com.mymealapp.viewmodel.MealByCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 

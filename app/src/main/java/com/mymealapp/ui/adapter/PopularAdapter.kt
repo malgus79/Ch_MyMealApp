@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment.home
+package com.mymealapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,6 +10,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
 import com.mymealapp.databinding.ItemPopularMealBinding
 import com.mymealapp.model.data.MealByCategory
+import com.mymealapp.ui.fragment.HomeFragmentDirections
 
 class PopularAdapter : RecyclerView.Adapter<PopularAdapter.VieHolder>() {
 

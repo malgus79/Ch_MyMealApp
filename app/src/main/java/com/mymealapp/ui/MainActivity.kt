@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.snackbar.Snackbar
 import com.mymealapp.R
 import com.mymealapp.databinding.ActivityMainBinding
+import com.mymealapp.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

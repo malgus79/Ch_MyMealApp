@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment.search
+package com.mymealapp.ui.fragment
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -14,8 +14,9 @@ import com.mymealapp.R
 import com.mymealapp.core.Resource
 import com.mymealapp.core.hide
 import com.mymealapp.core.show
-import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentSearchBinding
+import com.mymealapp.ui.adapter.SearchAdapter
+import com.mymealapp.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
