@@ -17,9 +17,9 @@ class SearchViewModel @Inject constructor(private val repo: RepositoryImpl) : Vi
         mutableMealName.value = mealName
     }
 
-    init {
-        setMeal("Arrabiata")
-    }
+//    init {
+//        setMeal("Arrabiata")
+//    }
 
     val fetchMealList = mutableMealName.distinctUntilChanged().switchMap {
         liveData(viewModelScope.coroutineContext + Dispatchers.IO) {

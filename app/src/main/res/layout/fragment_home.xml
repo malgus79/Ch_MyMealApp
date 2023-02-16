@@ -78,6 +78,7 @@
                     android:id="@+id/img_random_meal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="?attr/colorPrimaryVariant"
                     android:contentDescription="@string/img_random_meal"
                     android:scaleType="centerCrop" />
 

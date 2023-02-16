@@ -43,8 +43,6 @@ class DetailMealByCategoryFragment : Fragment() {
 
         isLoading(true)
         setupShowMealDetail()
-//        isMealFavorited()
-//        updateButtonIcon()
         onClickShareMeal()
 
         return binding.root
@@ -63,52 +61,56 @@ class DetailMealByCategoryFragment : Fragment() {
     }
 
     private fun loadData(meal: Meal) {
-        try {
-            Glide.with(this@DetailMealByCategoryFragment)
-                .load(meal.image)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgAppBar)
+        with(binding) {
+            try {
+                Glide.with(this@DetailMealByCategoryFragment)
+                    .load(meal.image)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(R.drawable.gradient)
+                    .centerCrop()
+                    .into(imgAppBar)
 
-            val category = "${getString(R.string.category_detail)} ${meal.category} "
-            val area = "${getString(R.string.area_detail)} ${meal.area} "
-            val tags = "${getString(R.string.tags_detail)} ${meal.tags} "
-            binding.toolbar.title = meal.name
-            binding.txtCategory.text = category
-            binding.txtArea.text = area
-            binding.txtInstructionDescriptions.text = meal.instructions
+                val category = "${getString(R.string.category_detail)} ${meal.category} "
+                val area = "${getString(R.string.area_detail)} ${meal.area} "
+                val tags = "${getString(R.string.tags_detail)} ${meal.tags} "
+                toolbar.title = meal.name
+                txtCategory.text = category
+                txtArea.text = area
+                txtInstructionDescriptions.text = meal.instructions
 
-            if (meal.tags == null) {
-                binding.txtTags.text = getString(R.string.tags_no_data)
-            } else {
-                binding.txtTags.text = tags
-            }
-
-            binding.imgYoutubeWatchVideo.setOnClickListener {
-                try {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(meal.youtube)))
-                } catch (e: Exception) {
-                    showToast("${e.message}")
+                if (meal.tags == null) {
+                    txtTags.text = getString(R.string.tags_no_data)
+                } else {
+                    txtTags.text = tags
                 }
+
+                imgYoutubeWatchVideo.setOnClickListener {
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(meal.youtube)))
+                    } catch (e: Exception) {
+                        showToast("${e.message}")
+                    }
+                }
+                isLoading(false)
+            } catch (e: Exception) {
+                showToast("${e.message}")
             }
-            isLoading(false)
-        } catch (e: Exception) {
-            showToast("${e.message}")
         }
     }
 
     private fun isLoading(loading: Boolean) {
-        binding.progressBar.isVisible = loading
-        binding.txtInstructionTitle.isVisible = !loading
-        binding.txtCategory.isVisible = !loading
-        binding.txtArea.isVisible = !loading
-        binding.txtTags.isVisible = !loading
-        binding.txtInstructionDescriptions.isVisible = !loading
-        binding.fabFavorite.isVisible = !loading
-        binding.fabShare.isVisible = !loading
-        binding.imgYoutubeWatchVideo.isVisible = !loading
+        with(binding) {
+            progressBar.isVisible = loading
+            txtInstructionTitle.isVisible = !loading
+            txtCategory.isVisible = !loading
+            txtArea.isVisible = !loading
+            txtTags.isVisible = !loading
+            txtInstructionDescriptions.isVisible = !loading
+            fabFavorite.isVisible = !loading
+            fabShare.isVisible = !loading
+            imgYoutubeWatchVideo.isVisible = !loading
+        }
     }
 
     private fun isMealFavorited() {

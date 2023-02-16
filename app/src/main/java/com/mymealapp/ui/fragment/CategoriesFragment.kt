@@ -38,22 +38,24 @@ class CategoriesFragment : Fragment() {
 
     private fun setupCategoriesMeal() {
         viewModel.fetchCategoriesMeal().observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progressBar.show()
-                }
-                is Resource.Success -> {
-                    binding.progressBar.hide()
-                    if (it.data.categories.isEmpty()) {
-                        binding.rvCategoriesMeal.hide()
-                        return@observe
+            with(binding) {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.show()
                     }
-                    adapterCategories.setCategoriesList(it.data.categories)
-                    setupCategoriesRecyclerView()
-                }
-                is Resource.Failure -> {
-                    binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail))
+                    is Resource.Success -> {
+                        progressBar.hide()
+                        if (it.data.categories.isEmpty()) {
+                            binding.rvCategoriesMeal.hide()
+                            return@observe
+                        }
+                        adapterCategories.setCategoriesList(it.data.categories)
+                        setupCategoriesRecyclerView()
+                    }
+                    is Resource.Failure -> {
+                        progressBar.hide()
+                        showToast(getString(R.string.error_detail))
+                    }
                 }
             }
         }

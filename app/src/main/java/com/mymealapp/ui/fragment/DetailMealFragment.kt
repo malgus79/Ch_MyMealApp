@@ -56,26 +56,28 @@ class DetailMealFragment : Fragment() {
     }
 
     private fun showDetailMeal() {
-        Glide.with(binding.root.context)
-            .load(meal.image)
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .error(R.drawable.gradient)
-            .centerCrop()
-            .into(binding.imgAppBar)
+        with(binding) {
+            Glide.with(binding.root.context)
+                .load(meal.image)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.gradient)
+                .centerCrop()
+                .into(imgAppBar)
 
-        val category = "${getString(R.string.category_detail)} ${meal.category} "
-        val area = "${getString(R.string.area_detail)} ${meal.area} "
-        val tags = "${getString(R.string.tags_detail)} ${meal.tags} "
-        binding.toolbar.title = meal.name
-        binding.txtCategory.text = category
-        binding.txtArea.text = area
-        binding.txtInstructionDescriptions.text = meal.instructions
+            val category = "${getString(R.string.category_detail)} ${meal.category} "
+            val area = "${getString(R.string.area_detail)} ${meal.area} "
+            val tags = "${getString(R.string.tags_detail)} ${meal.tags} "
+            toolbar.title = meal.name
+            txtCategory.text = category
+            txtArea.text = area
+            txtInstructionDescriptions.text = meal.instructions
 
-        if (meal.tags == null) {
-            binding.txtTags.text = getString(R.string.tags_no_data)
-        } else {
-            binding.txtTags.text = tags
+            if (meal.tags == null) {
+                txtTags.text = getString(R.string.tags_no_data)
+            } else {
+                txtTags.text = tags
+            }
         }
     }
 

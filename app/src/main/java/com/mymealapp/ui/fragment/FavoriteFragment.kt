@@ -42,23 +42,25 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnMealFavoriteClickListener
 
     private fun setupFavoriteMeal() {
         viewModel.fetchFavoriteMeal().observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progressBar.show()
-                }
-                is Resource.Success -> {
-                    binding.progressBar.hide()
-                    if (it.data.isEmpty()) {
-                        binding.rvFavoriteMeal.hide()
-                        binding.emptyContainer.root.show()
-                        return@observe
+            with(binding) {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.show()
                     }
-                    adapterFavorite.setFavoriteMealList(it.data)
-                    setupFavoriteRecyclerView()
-                }
-                is Resource.Failure -> {
-                    binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail) + it.exception)
+                    is Resource.Success -> {
+                        progressBar.hide()
+                        if (it.data.isEmpty()) {
+                            rvFavoriteMeal.hide()
+                            emptyContainer.root.show()
+                            return@observe
+                        }
+                        adapterFavorite.setFavoriteMealList(it.data)
+                        setupFavoriteRecyclerView()
+                    }
+                    is Resource.Failure -> {
+                        progressBar.hide()
+                        showToast(getString(R.string.error_detail) + it.exception)
+                    }
                 }
             }
         }

@@ -82,39 +82,41 @@ class HomeFragment : Fragment() {
         val titlePopularMeals = "${getString(R.string.title_popular_meals)} $randomCategory "
 
         viewModel.fetchAllMealsInHome(randomCategory).observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.swipeRefreshLayout.isRefreshing = false
-                    binding.progressBar.show()
-                }
-                is Resource.Success -> {
-                    binding.swipeRefreshLayout.isRefreshing = false
-                    binding.progressBar.hide()
-                    showTitlesInHome(titlePopularMeals)
+            with(binding) {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.show()
+                    }
+                    is Resource.Success -> {
+                        swipeRefreshLayout.isRefreshing = false
+                        progressBar.hide()
+                        showTitlesInHome(titlePopularMeals)
 
-                    setupShowRandomMeals(it.data.first.meals.first())
+                        setupShowRandomMeals(it.data.first.meals.first())
 
-                    setupPopularMealsRecyclerView()
-                    adapterPopular.setMealPopularList(it.data.second.meals)
+                        setupPopularMealsRecyclerView()
+                        adapterPopular.setMealPopularList(it.data.second.meals)
 
-                    setupCategoriesRecyclerView()
-                    adapterCategory.setCategoryList(it.data.third.categories)
-                }
-                is Resource.Failure -> {
-                    binding.swipeRefreshLayout.isRefreshing = false
-                    binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail))
+                        setupCategoriesRecyclerView()
+                        adapterCategory.setCategoryList(it.data.third.categories)
+                    }
+                    is Resource.Failure -> {
+                        swipeRefreshLayout.isRefreshing = false
+                        progressBar.hide()
+                        showToast(getString(R.string.error_detail))
+                    }
                 }
             }
         }
     }
 
     private fun showTitlesInHome(titlePopularMeals: String) {
-        //binding.txtTitleHome.show()
-        binding.txtTitleRandom.show()
-        binding.cardViewHomeRandom.show()
-        binding.txtTitlePopular.text = titlePopularMeals
-        binding.txtTitleCategories.show()
+        with(binding) {
+            txtTitleRandom.show()
+            cardViewHomeRandom.show()
+            txtTitlePopular.text = titlePopularMeals
+            txtTitleCategories.show()
+        }
     }
 
     private fun setupShowRandomMeals(item: Meal) {

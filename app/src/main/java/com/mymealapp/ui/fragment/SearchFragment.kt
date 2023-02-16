@@ -42,23 +42,25 @@ class SearchFragment : Fragment() {
 
     private fun setupObserver() {
         viewModel.fetchMealList.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.emptyContainer.root.hide()
-                }
-                is Resource.Success -> {
-                    if (it.data.isEmpty()) {
-                        binding.rvSearchMeal.hide()
-                        binding.emptyContainer.root.show()
-                        return@observe
+            with(binding) {
+                when (it) {
+                    is Resource.Loading -> {
+                        emptyContainer.root.hide()
                     }
-                    setupRecyclerView()
-                    adapterSearch.setMealSearchedList(it.data)
-                    binding.emptyContainer.root.hide()
+                    is Resource.Success -> {
+                        if (it.data.isEmpty()) {
+                            rvSearchMeal.hide()
+                            emptyContainer.root.show()
+                            return@observe
+                        }
+                        setupRecyclerView()
+                        adapterSearch.setMealSearchedList(it.data)
+                        emptyContainer.root.hide()
 
-                }
-                is Resource.Failure -> {
-                    Log.d(TAG, "Error: " + it.exception)
+                    }
+                    is Resource.Failure -> {
+                        Log.d(TAG, "Error: " + it.exception)
+                    }
                 }
             }
         }

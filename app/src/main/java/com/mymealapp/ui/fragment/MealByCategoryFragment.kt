@@ -46,24 +46,26 @@ class MealByCategoryFragment : Fragment() {
 
     private fun showDataMealsByCategories() {
         viewModel.fetchMealByCategories.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progressBar.show()
-                }
-                is Resource.Success -> {
-                    binding.progressBar.hide()
-                    if (it.data.meals.isEmpty()) {
-                        binding.rvMealByCategoryMeal.hide()
-                        return@observe
+            with(binding) {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.show()
                     }
-                    setupMealByCategoryRecyclerView()
-                    adapterMealByCategory.setMealByCategoryList(it.data.meals)
-                    countMealByCategories(it.data.meals.size)
-                    showTitleMealByCategory()
-                }
-                is Resource.Failure -> {
-                    binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail))
+                    is Resource.Success -> {
+                        progressBar.hide()
+                        if (it.data.meals.isEmpty()) {
+                            rvMealByCategoryMeal.hide()
+                            return@observe
+                        }
+                        setupMealByCategoryRecyclerView()
+                        adapterMealByCategory.setMealByCategoryList(it.data.meals)
+                        countMealByCategories(it.data.meals.size)
+                        showTitleMealByCategory()
+                    }
+                    is Resource.Failure -> {
+                        progressBar.hide()
+                        showToast(getString(R.string.error_detail))
+                    }
                 }
             }
         }

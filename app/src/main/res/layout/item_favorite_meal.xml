@@ -30,6 +30,7 @@
                 android:id="@+id/img_favorite_meal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="?attr/colorPrimaryVariant"
                 android:contentDescription="@string/item_favorite_image"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher" />
@@ -44,7 +45,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cv_favorite_img_meal"
             app:layout_constraintStart_toStartOf="@id/cv_favorite_img_meal"

@@ -1,43 +1,54 @@
 <resources>
     <string name="app_name">Meal App</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_meal">Search meal</string>
-    <string name="img_search_meal">Image search meal</string>
-    <string name="search_no_found">No meal found</string>
-    <string name="error_detail">An error occurred while obtaining the information</string>
-    <string name="img_app_bar">Image App Bar</string>
-    <string name="fab_favorite">Fab favorite</string>
-    <string name="category_detail">"Category: "</string>
-    <string name="area_detail">"Area: "</string>
-    <string name="tags_detail">"Tags: "</string>
-    <string name="instructions_detail">Instructions:</string>
-    <string name="youtube_watch_video">Youtube watch video</string>
-    <string name="removed_meal">Removed from Favorite</string>
-    <string name="added_meal">Added to Favorite</string>
-    <string name="item_favorite_image">Item favorite image</string>
-    <string name="favorites_title">Favorites</string>
-    <string name="favorite_fragment">Favorite Fragment</string>
-    <string name="search">Search</string>
-    <string name="favorites">Favorites</string>
-    <string name="share_error">"Failed to share "</string>
+    <!-- Home -->
     <string name="home">Home</string>
     <string name="what_would_you_like_to_eat">What would you like to eat ?</string>
     <string name="img_random_meal">Image random meal</string>
-    <string name="tags_no_data">Tags: no data</string>
     <string name="categories_title">Categories</string>
     <string name="item_categories_image">Item categories image</string>
-    <string name="categories">Categories</string>
-    <string name="meal_by_category_title">"Meals by category: "</string>
-    <string name="item_meal_by_category_image">Item meal by category image</string>
-    <string name="meal_by_category">Meal By Category</string>
-    <!--    <string name="fragment_meal_detail_by_category">Meal detail by category</string>-->
-    <string name="meal_detail">Meal detail</string>
-    <string name="count_of_meal_by_category">11</string>
     <string name="title_popular_meals">"Popular Meals: "</string>
     <string name="item_in_home_categories_image">Item in home categories image</string>
     <string name="connection_restored">Connection has been restored</string>
     <string name="no_connection">No internet connection</string>
     <string name="rule_out">Rule Out</string>
+    <string name="error_detail">An error occurred while obtaining the information</string>
+
+    <!-- Categories -->
+    <string name="categories">Categories</string>
+    <string name="meal_by_category_title">"Meals by category: "</string>
+    <string name="item_meal_by_category_image">Item meal by category image</string>
+    <string name="meal_by_category">Meal By Category</string>
+    <string name="count_of_meal_by_category">11</string>
+
+    <!-- Search -->
+    <string name="search">Search</string>
+    <string name="search_meal">Search meal</string>
+    <string name="img_search_meal">Image search meal</string>
+    <string name="search_no_found">No meal found</string>
+
+    <!-- Favorite -->
+    <string name="favorites">Favorites</string>
+    <string name="favorite_fragment">Favorite Fragment</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="removed_meal">Removed from Favorite</string>
+    <string name="added_meal">Added to Favorite</string>
+    <string name="item_favorite_image">Item favorite image</string>
+
+    <!-- Detail -->
+    <string name="meal_detail">Meal detail</string>
+    <string name="img_app_bar">Image App Bar</string>
+    <string name="category_detail">"Category: "</string>
+    <string name="area_detail">"Area: "</string>
+    <string name="tags_detail">"Tags: "</string>
+    <string name="instructions_detail">Instructions:</string>
+    <string name="youtube_watch_video">Youtube watch video</string>
+    <string name="fab_favorite">Fab favorite</string>
+    <string name="fab_share">Fab share</string>
+    <string name="share_error">"Failed to share "</string>
+    <string name="tags_no_data">Tags: no data</string>
+
+    <!-- Splash -->
     <string name="logo_splash">Logo splash</string>
+
 </resources>

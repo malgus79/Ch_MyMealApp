@@ -22,7 +22,7 @@
             android:elevation="@dimen/common_margin_default"
             android:clipToPadding="true"
             app:cardCornerRadius="@dimen/common_corner_middle"
-            android:background="@color/white"
+            android:background="?attr/colorOnPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -35,6 +35,7 @@
                 android:contentDescription="@string/item_in_home_categories_image"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
+                android:background="@color/grey_loading"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
