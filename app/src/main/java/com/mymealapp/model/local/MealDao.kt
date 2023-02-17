@@ -29,4 +29,8 @@ interface MealDao {
 
     @Query("SELECT * FROM favorites_entity")
     fun getAllFavoritesMealsWithChanges(): LiveData<List<FavoritesEntity>>
+
+    //for androidTest in MealDaoTest
+    @Query("SELECT * FROM favorites_entity")
+    suspend fun getAllFavoriteMeals(): List<FavoritesEntity>
 }
