@@ -1,6 +1,7 @@
 package com.mymealapp.accessdata
 
 import com.google.gson.Gson
+import com.mymealapp.model.data.CategoryList
 import com.mymealapp.model.data.MealByCategoryList
 import com.mymealapp.model.data.MealList
 import java.io.InputStreamReader
@@ -15,7 +16,7 @@ class JSONFileLoader {
         return jsonStr
     }
 
-    fun loadCategoryList(file: String): MealByCategoryList? {
+    fun loadMealByCategoryList(file: String): MealByCategoryList? {
         val loader = InputStreamReader(this.javaClass.classLoader?.getResourceAsStream(file))
         jsonStr = loader.readText()
         loader.close()
@@ -28,4 +29,12 @@ class JSONFileLoader {
         loader.close()
         return Gson().fromJson(jsonStr, MealList::class.java)
     }
+
+    fun loadCategoryList(file: String): CategoryList? {
+        val loader = InputStreamReader(this.javaClass.classLoader?.getResourceAsStream(file))
+        jsonStr = loader.readText()
+        loader.close()
+        return Gson().fromJson(jsonStr, CategoryList::class.java)
+    }
+
 }

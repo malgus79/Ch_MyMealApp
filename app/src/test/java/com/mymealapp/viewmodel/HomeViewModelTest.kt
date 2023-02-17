@@ -132,7 +132,7 @@ class HomeViewModelTest {
     fun `check meals remote with local test`() {
         runBlocking {
             val remoteResult = api.getPopularMeals("Beef")
-            val localResult = JSONFileLoader().loadCategoryList("meal_by_category_response_success")
+            val localResult = JSONFileLoader().loadMealByCategoryList("meal_by_category_response_success")
 
             assertThat(
                 localResult?.meals?.size,
