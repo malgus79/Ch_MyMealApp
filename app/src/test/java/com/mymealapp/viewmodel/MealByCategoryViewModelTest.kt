@@ -1,31 +1,21 @@
 package com.mymealapp.viewmodel
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.mymealapp.accessdata.JSONFileLoader
-import com.mymealapp.core.Constants
-import com.mymealapp.model.data.Category
-import com.mymealapp.model.data.MealByCategory
-import com.mymealapp.model.remote.ApiService
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.notNullValue
+import com.mymealapp.core.Constants
+import com.mymealapp.model.data.MealByCategory
+import com.mymealapp.model.remote.ApiService
+import kotlinx.coroutines.runBlocking
+import org.hamcrest.CoreMatchers
 import org.junit.Before
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class HomeViewModelTest {
-
-    @get:Rule
-    val instantExecutionerRule = InstantTaskExecutorRule()
-
-    @ExperimentalCoroutinesApi
-    @get:Rule
-    val mainCoroutinesRule = MainDispatcherRule()
+class MealByCategoryViewModelTest {
 
     private lateinit var api: ApiService
 
@@ -48,55 +38,34 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `check fetch meals random is not null test`() {
+    fun `check fetch meals by category beef is not null test`() {
         runBlocking {
-            val result = api.getRandomMeal()
-            assertThat(result, `is`(notNullValue()))
+            val result = api.getMealByCategory("Beef")
+            assertThat(result.meals, `is`(notNullValue()))
         }
     }
 
     @Test
-    fun `check fetch meals popular is not null test`() {
+    fun `check item meals by category beef for page test`() {
         runBlocking {
-            val result = api.getPopularMeals("Beef")
-            assertThat(result, `is`(notNullValue()))
-        }
-    }
-
-    @Test
-    fun `check fetch categories is not null test`() {
-        runBlocking {
-            val result = api.getCategoriesMeal()
-            assertThat(result, `is`(notNullValue()))
-        }
-    }
-
-    @Test
-    fun `check items of meals random test`() {
-        runBlocking {
-            val result = api.getRandomMeal()
-            assertThat(result.meals.size, `is`(1))
-        }
-    }
-
-    @Test
-    fun `check items of meals in categories beef test`() {
-        runBlocking {
-            val result = api.getPopularMeals("Beef")
+            val result = api.getMealByCategory("Beef")
             assertThat(result.meals.size, `is`(42))
         }
     }
 
     @Test
-    fun `check number of categories test`() {
+    fun `check error fetch meals by category beef test`() {
         runBlocking {
-            val result = api.getCategoriesMeal()
-            assertThat(result.categories.size, `is`(14))
+            try {
+                api.getMealByCategory("Beef")
+            } catch (e: Exception) {
+                assertThat(e.localizedMessage, `is`("HTTP 401 "))
+            }
         }
     }
 
     @Test
-    fun `check first item meal test`() {
+    fun `check first item meal by category beef test`() {
         runBlocking {
             val result = api.getPopularMeals("Beef")
             assertThat(
@@ -112,24 +81,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `check first item categories test`() {
-        runBlocking {
-            val result = api.getCategoriesMeal()
-            assertThat(
-                result.categories.first(), `is`(
-                    Category(
-                        "1",
-                        "Beef",
-                        "Beef is the culinary name for meat from cattle, particularly skeletal muscle. Humans have been eating beef since prehistoric times.[1] Beef is a source of high-quality protein and essential nutrients.[2]",
-                        "https://www.themealdb.com/images/category/beef.png"
-                    )
-                )
-            )
-        }
-    }
-
-    @Test
-    fun `check meals remote with local test`() {
+    fun `check meals by category beef remote with local test`() {
         runBlocking {
             val remoteResult = api.getPopularMeals("Beef")
             val localResult =

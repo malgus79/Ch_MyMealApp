@@ -64,6 +64,23 @@ class CategoriesViewModelTest {
     }
 
     @Test
+    fun `check first item categories test`() {
+        runBlocking {
+            val result = api.getCategoriesMeal()
+            assertThat(
+                result.categories.first(), `is`(
+                    Category(
+                        "1",
+                        "Beef",
+                        "Beef is the culinary name for meat from cattle, particularly skeletal muscle. Humans have been eating beef since prehistoric times.[1] Beef is a source of high-quality protein and essential nutrients.[2]",
+                        "https://www.themealdb.com/images/category/beef.png"
+                    )
+                )
+            )
+        }
+    }
+
+    @Test
     fun `check categories remote with local test`() {
         runBlocking {
             val remoteResult = api.getCategoriesMeal()
