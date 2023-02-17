@@ -5,7 +5,6 @@ import com.mymealapp.accessdata.JSONFileLoader
 import com.mymealapp.core.Constants
 import com.mymealapp.model.data.Category
 import com.mymealapp.model.data.MealByCategory
-import com.mymealapp.model.data.MealByCategoryList
 import com.mymealapp.model.remote.ApiService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -133,7 +132,7 @@ class HomeViewModelTest {
     fun `check meals remote with local test`() {
         runBlocking {
             val remoteResult = api.getPopularMeals("Beef")
-            val localResult = JSONFileLoader().loadCategoryList("category_response_success")
+            val localResult = JSONFileLoader().loadCategoryList("meal_by_category_response_success")
 
             assertThat(
                 localResult?.meals?.size,
