@@ -1,20 +1,21 @@
 package com.mymealapp.viewmodel
 
 import com.mymealapp.accessdata.JSONFileLoader
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.notNullValue
 import com.mymealapp.core.Constants
+import com.mymealapp.model.data.Meal
 import com.mymealapp.model.data.MealByCategory
 import com.mymealapp.model.remote.ApiService
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.notNullValue
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MealByCategoryViewModelTest {
+class DetailMealViewModelTest {
 
     private lateinit var api: ApiService
 
@@ -37,26 +38,26 @@ class MealByCategoryViewModelTest {
     }
 
     @Test
-    fun `check fetch meals by category beef is not null test`() {
+    fun `check fetch meals by id (id = 52977) is not null test`() {
         runBlocking {
-            val result = api.getMealByCategory("Beef")
+            val result = api.getMealDetailsById("52977")
             assertThat(result.meals, `is`(notNullValue()))
         }
     }
 
     @Test
-    fun `check item meals by category beef for page test`() {
+    fun `check item meals by id (id = 52977) for page test`() {
         runBlocking {
-            val result = api.getMealByCategory("Beef")
-            assertThat(result.meals.size, `is`(42))
+            val result = api.getMealDetailsById("52977")
+            assertThat(result.meals.size, `is`(1))
         }
     }
 
     @Test
-    fun `check error fetch meals by category beef test`() {
+    fun `check error fetch meals by id (id = 52977) test`() {
         runBlocking {
             try {
-                api.getMealByCategory("Beef")
+                api.getMealDetailsById("52977")
             } catch (e: Exception) {
                 assertThat(e.localizedMessage, `is`("HTTP 401 "))
             }
@@ -64,27 +65,11 @@ class MealByCategoryViewModelTest {
     }
 
     @Test
-    fun `check first item meal by category beef test`() {
+    fun `check meals by id (id = 52977) remote with local test`() {
         runBlocking {
-            val result = api.getPopularMeals("Beef")
-            assertThat(
-                result.meals.first(), `is`(
-                    MealByCategory(
-                        "52874",
-                        "Beef and Mustard Pie",
-                        "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg"
-                    )
-                )
-            )
-        }
-    }
-
-    @Test
-    fun `check meals by category beef remote with local test`() {
-        runBlocking {
-            val remoteResult = api.getPopularMeals("Beef")
+            val remoteResult = api.getMealDetailsById("52977")
             val localResult =
-                JSONFileLoader().loadMealByCategoryList("meal_by_category_response_success")
+                JSONFileLoader().loadMealList("meal_by_id_response_success")
 
             assertThat(
                 localResult?.meals?.size,
@@ -97,8 +82,8 @@ class MealByCategoryViewModelTest {
             )
 
             assertThat(
-                localResult?.meals?.contains(MealByCategory()),
-                `is`(remoteResult.meals.contains(MealByCategory()))
+                localResult?.meals?.contains(Meal("","","","","","","","")),
+                `is`(remoteResult.meals.contains(Meal("","","","","","","","")))
             )
 
             assertThat(
