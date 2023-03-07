@@ -1,4 +1,4 @@
-package com.mymealapp.ui.adapter
+package com.mymealapp.ui.fragment.mealbycategory.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
 import com.mymealapp.databinding.ItemMealByCategoryBinding
 import com.mymealapp.model.data.MealByCategory
-import com.mymealapp.ui.fragment.MealByCategoryFragmentDirections
+import com.mymealapp.ui.fragment.mealbycategory.MealByCategoryFragmentDirections
 
 class MealByCategoryAdapter : RecyclerView.Adapter<MealByCategoryAdapter.ViewHolder>() {
 

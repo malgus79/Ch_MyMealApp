@@ -1,4 +1,4 @@
-package com.mymealapp.ui.adapter
+package com.mymealapp.ui.fragment.favorite.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

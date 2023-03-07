@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment
+package com.mymealapp.ui.fragment.home
 
 import android.os.Bundle
 import android.os.Handler
@@ -22,8 +22,8 @@ import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentHomeBinding
 import com.mymealapp.model.data.Meal
-import com.mymealapp.ui.adapter.CategoryAdapter
-import com.mymealapp.ui.adapter.PopularAdapter
+import com.mymealapp.ui.fragment.home.adapter.CategoryAdapter
+import com.mymealapp.ui.fragment.home.adapter.PopularAdapter
 import com.mymealapp.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator

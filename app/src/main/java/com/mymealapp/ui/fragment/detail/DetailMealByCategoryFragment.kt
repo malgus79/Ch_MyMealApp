@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment
+package com.mymealapp.ui.fragment.detail
 
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable

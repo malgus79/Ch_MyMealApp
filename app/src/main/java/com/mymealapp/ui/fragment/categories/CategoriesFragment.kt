@@ -1,4 +1,4 @@
-package com.mymealapp.ui.fragment
+package com.mymealapp.ui.fragment.categories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import com.mymealapp.core.hide
 import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentCategoriesBinding
-import com.mymealapp.ui.adapter.CategoriesAdapter
+import com.mymealapp.ui.fragment.categories.adapter.CategoriesAdapter
 import com.mymealapp.viewmodel.CategoriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.LandingAnimator
