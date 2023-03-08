@@ -83,6 +83,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_areaFragment"
+            app:destination="@id/areaFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -121,5 +124,14 @@
         <argument
             android:name="id_meal"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/areaFragment"
+        android:name="com.mymealapp.ui.fragment.area.AreaFragment"
+        android:label="@string/area"
+        tools:layout="@layout/fragment_area" >
+        <action
+            android:id="@+id/action_areaFragment_to_mealDetailByCategoryFragment"
+            app:destination="@id/mealDetailByCategoryFragment" />
     </fragment>
 </navigation>

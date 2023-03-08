@@ -97,4 +97,14 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getPopularMeals(categoryName: String): MealByCategoryList {
         return remoteDataSource.getPopularMeals(categoryName)
     }
+
+    /*------------------------------ All area list ------------------------------*/
+    override suspend fun getAllAreaList(area: String): AreaList {
+        return remoteDataSource.getAllAreaList(area)
+    }
+
+    /*------------------------------ Meal by area ------------------------------*/
+    override suspend fun getMealByArea(area: String): MealList {
+        return remoteDataSource.getMealByArea(area)
+    }
 }

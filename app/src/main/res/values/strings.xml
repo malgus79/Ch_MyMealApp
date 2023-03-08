@@ -21,6 +21,10 @@
     <string name="meal_by_category">Meal By Category</string>
     <string name="count_of_meal_by_category">11</string>
 
+    <!-- Area -->
+    <string name="area">Area</string>
+    <string name="area_title">American</string>
+
     <!-- Search -->
     <string name="search">Search</string>
     <string name="search_meal">Search meal</string>
@@ -50,5 +54,6 @@
 
     <!-- Splash -->
     <string name="logo_splash">Logo splash</string>
+
 
 </resources>

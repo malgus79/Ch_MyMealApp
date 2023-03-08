@@ -9,6 +9,10 @@
         android:title="@string/categories"
         android:icon="@drawable/ic_category"/>
 
+    <item android:id="@+id/areaFragment"
+        android:title="@string/area"
+        android:icon="@drawable/ic_location_on"/>
+
     <item android:id="@+id/searchFragment"
         android:title="@string/search"
         android:icon="@drawable/ic_search"/>

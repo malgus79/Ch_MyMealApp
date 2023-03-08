@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mcv_area"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/common_margin_default"
+    android:layout_marginVertical="@dimen/common_margin_item"
+    android:backgroundTint="?attr/colorOnSecondary"
+    app:cardCornerRadius="@dimen/common_corner_area"
+    app:cardElevation="@dimen/common_margin_min">
+
+    <Button
+        android:id="@+id/btn_area"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_margin_item"
+        android:background="@drawable/rounded_corners"
+        android:textAlignment="center"
+        android:textSize="@dimen/common_size_min"
+        tools:text="Area" />
+
+</com.google.android.material.card.MaterialCardView>

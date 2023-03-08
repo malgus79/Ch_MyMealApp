@@ -21,6 +21,7 @@
     <!-- Dimens CornerRadius -->
     <dimen name="common_corner_default">16dp</dimen>
     <dimen name="common_corner_middle">32dp</dimen>
+    <dimen name="common_corner_area">50dp</dimen>
 
     <!-- Other -->
     <dimen name="error_image_size">50dp</dimen>

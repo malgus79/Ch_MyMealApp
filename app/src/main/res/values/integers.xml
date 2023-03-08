@@ -6,4 +6,6 @@
     <integer name="columns_meals_by_category">1</integer>
     <integer name="columns_popular">1</integer>
     <integer name="columns_categories_in_home">3</integer>
+    <integer name="columns_all_areas">1</integer>
+    <integer name="columns_meals_by_area">2</integer>
 </resources>

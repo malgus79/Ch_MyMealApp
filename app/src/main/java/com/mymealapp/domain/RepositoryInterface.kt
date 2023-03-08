@@ -2,10 +2,7 @@ package com.mymealapp.domain
 
 import androidx.lifecycle.LiveData
 import com.mymealapp.core.Resource
-import com.mymealapp.model.data.CategoryList
-import com.mymealapp.model.data.Meal
-import com.mymealapp.model.data.MealByCategoryList
-import com.mymealapp.model.data.MealList
+import com.mymealapp.model.data.*
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryInterface {
@@ -35,4 +32,10 @@ interface RepositoryInterface {
 
     /*------------------------------ Popular meals ------------------------------*/
     suspend fun getPopularMeals(categoryName: String): MealByCategoryList
+
+    /*------------------------------ All area list ------------------------------*/
+    suspend fun getAllAreaList(area:String):AreaList
+
+    /*------------------------------ Meal by area ------------------------------*/
+    suspend fun getMealByArea(area: String): MealList
 }

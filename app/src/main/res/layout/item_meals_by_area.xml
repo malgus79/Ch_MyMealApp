@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mcv_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/common_margin_min"
+    app:cardCornerRadius="@dimen/common_corner_default">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorOnSecondary">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_meal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="?attr/colorOnPrimary"
+            android:clipToPadding="true"
+            android:elevation="@dimen/common_margin_default"
+            android:padding="@dimen/common_padding_min"
+            app:cardCornerRadius="@dimen/common_corner_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_meal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="?attr/colorPrimaryVariant"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                tools:ignore="ContentDescription" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txt_title_meal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/common_margin_min"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="@dimen/common_size_normal"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/mcv_meal"
+            app:layout_constraintStart_toStartOf="@id/mcv_meal"
+            app:layout_constraintTop_toBottomOf="@id/mcv_meal"
+            tools:text="Meal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

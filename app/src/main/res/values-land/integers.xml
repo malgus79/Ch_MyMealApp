@@ -5,4 +5,5 @@
     <integer name="columns_categories">2</integer>
     <integer name="columns_meals_by_category">2</integer>
     <integer name="columns_categories_in_home">5</integer>
+    <integer name="columns_meals_by_area">5</integer>
 </resources>

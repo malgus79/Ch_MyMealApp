@@ -1,14 +1,10 @@
 package com.mymealapp.model.remote
 
 import com.mymealapp.core.Resource
-import com.mymealapp.model.data.CategoryList
-import com.mymealapp.model.data.Meal
-import com.mymealapp.model.data.MealByCategoryList
-import com.mymealapp.model.data.MealList
+import com.mymealapp.model.data.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val api: ApiService) {
@@ -41,5 +37,13 @@ class RemoteDataSource @Inject constructor(private val api: ApiService) {
 
     suspend fun getPopularMeals(categoryName: String): MealByCategoryList {
         return api.getMealByCategory(categoryName)
+    }
+
+    suspend fun getAllAreaList(area: String): AreaList {
+        return api.getAllAreaList(area)
+    }
+
+    suspend fun getMealByArea(area: String): MealList {
+        return api.getMealByArea(area)
     }
 }
