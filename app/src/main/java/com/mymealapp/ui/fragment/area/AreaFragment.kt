@@ -1,9 +1,13 @@
 package com.mymealapp.ui.fragment.area
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -42,6 +46,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
     ): View {
         binding = FragmentAreaBinding.inflate(inflater, container, false)
 
+        swipeRefresh()
         setupMealByArea()
         setupAllAreasList()
 
@@ -49,17 +54,44 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
         return binding.root
     }
 
+    private fun swipeRefresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.setColorSchemeResources(
+                R.color.purple_700,
+                R.color.red_theme,
+            )
+            binding.swipeRefreshLayout.setProgressBackgroundColorSchemeColor(
+                ContextCompat.getColor(requireContext(), R.color.grey_loading)
+            )
+            Handler(Looper.getMainLooper()).postDelayed({
+                setupMealByArea()
+                setupAllAreasList()
+            }, 500)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefreshLayout.isRefreshing = false
+    }
+
     private fun setupMealByArea() {
         viewModel.fetchAllAreas().observe(viewLifecycleOwner) {
             with(binding) {
                 when (it) {
                     is Resource.Loading -> {
-                        progressBar.show()
                         rvMealsByArea.hide()
                         txtTitleArea.hide()
+
+                        if (swipeRefreshLayout.isRefreshing) {
+                            progressBar.hide()
+                        } else {
+                            progressBar.show()
+                        }
                     }
                     is Resource.Success -> {
                         progressBar.hide()
+                        swipeRefreshLayout.isRefreshing = false
                         if (it.data.meals.isEmpty()) {
                             binding.rvMealsByArea.hide()
                             return@observe
@@ -70,6 +102,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
                     }
                     is Resource.Failure -> {
                         progressBar.hide()
+                        swipeRefreshLayout.isRefreshing = false
                         showToast(getString(R.string.error_detail))
                     }
                 }
@@ -95,8 +128,13 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
             with(binding) {
                 when (it) {
                     is Resource.Loading -> {
-                        progressBar.show()
                         rvAllAreas.hide()
+
+                        if (swipeRefreshLayout.isRefreshing) {
+                            progressBar.hide()
+                        } else {
+                            progressBar.show()
+                        }
                     }
                     is Resource.Success -> {
                         progressBar.hide()

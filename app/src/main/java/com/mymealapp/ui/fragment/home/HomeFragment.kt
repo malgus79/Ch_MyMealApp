@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -55,8 +56,7 @@ class HomeFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.swipeRefreshLayout.setColorSchemeResources(
                 R.color.purple_700,
-                R.color.red_theme,
-                R.color.green_normal_theme
+                R.color.red_theme
             )
             binding.swipeRefreshLayout.setProgressBackgroundColorSchemeColor(
                 ContextCompat.getColor(requireContext(), R.color.grey_loading)
@@ -85,7 +85,11 @@ class HomeFragment : Fragment() {
             with(binding) {
                 when (it) {
                     is Resource.Loading -> {
-                        progressBar.show()
+                        if (swipeRefreshLayout.isRefreshing) {
+                            progressBar.hide()
+                        } else {
+                            progressBar.show()
+                        }
                     }
                     is Resource.Success -> {
                         swipeRefreshLayout.isRefreshing = false
