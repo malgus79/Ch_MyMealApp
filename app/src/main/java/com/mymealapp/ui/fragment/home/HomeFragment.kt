@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
     private fun setupAllMealsInHome() {
 
         val categoriesNames = arrayOf(
-            "Beef", "Breakfast", "Chicken", "Dessert", "Goat", "Lamb",
+            "Beef", "Breakfast", "Chicken", "Dessert", "Lamb",
             "Miscellaneous", "Pasta", "Pork", "Seafood", "Side", "Starter", "Vegan", "Vegetarian"
         )
         val randomCategory = categoriesNames[Random.nextInt(categoriesNames.size)]

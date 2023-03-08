@@ -13,6 +13,7 @@ import com.mymealapp.core.hide
 import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentAreaBinding
+import com.mymealapp.databinding.ItemAllAreasBinding
 import com.mymealapp.model.data.Area
 import com.mymealapp.ui.fragment.area.adapter.AllAreasAdapter
 import com.mymealapp.ui.fragment.area.adapter.MealByAreaAdapter
@@ -50,25 +51,27 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
 
     private fun setupMealByArea() {
         viewModel.fetchAllAreas().observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progressBar.show()
-                    binding.rvMealsByArea.hide()
-                    binding.txtTitleArea.hide()
-                }
-                is Resource.Success -> {
-                    binding.progressBar.hide()
-                    if (it.data.meals.isEmpty()) {
-                        binding.rvMealsByArea.hide()
-                        return@observe
+            with(binding) {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.show()
+                        rvMealsByArea.hide()
+                        txtTitleArea.hide()
                     }
-                    setupMealByAreaRecyclerView()
-                    adapterMealByArea.setMealByAreaList(it.data.meals)
-                    binding.txtTitleArea.show()
-                }
-                is Resource.Failure -> {
-                    binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail))
+                    is Resource.Success -> {
+                        progressBar.hide()
+                        if (it.data.meals.isEmpty()) {
+                            binding.rvMealsByArea.hide()
+                            return@observe
+                        }
+                        setupMealByAreaRecyclerView()
+                        adapterMealByArea.setMealByAreaList(it.data.meals)
+                        txtTitleArea.show()
+                    }
+                    is Resource.Failure -> {
+                        progressBar.hide()
+                        showToast(getString(R.string.error_detail))
+                    }
                 }
             }
         }
@@ -89,23 +92,25 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
 
     private fun setupAllAreasList() {
         viewModel.fetchAllAreaList().observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progressBar.show()
-                    binding.rvAllAreas.hide()
-                }
-                is Resource.Success -> {
-                    binding.progressBar.hide()
-                    if (it.data.meals.isEmpty()) {
-                        binding.rvAllAreas.hide()
-                        return@observe
+            with(binding) {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.show()
+                        rvAllAreas.hide()
                     }
-                    setupAreaRecyclerView()
-                    adapterAllAreas.setAllAreaList(it.data.meals.toMutableList())
-                }
-                is Resource.Failure -> {
-                    binding.progressBar.hide()
-                    showToast(getString(R.string.error_detail))
+                    is Resource.Success -> {
+                        progressBar.hide()
+                        if (it.data.meals.isEmpty()) {
+                            rvAllAreas.hide()
+                            return@observe
+                        }
+                        setupAreaRecyclerView()
+                        adapterAllAreas.setAllAreaList(it.data.meals.toMutableList())
+                    }
+                    is Resource.Failure -> {
+                        progressBar.hide()
+                        showToast(getString(R.string.error_detail))
+                    }
                 }
             }
         }
