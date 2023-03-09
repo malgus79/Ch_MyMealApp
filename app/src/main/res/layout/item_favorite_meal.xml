@@ -5,8 +5,8 @@
     android:id="@+id/cv_container_item_favorite"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/common_margin_min"
     android:layout_marginHorizontal="@dimen/common_margin_default"
+    android:layout_marginVertical="@dimen/common_margin_min"
     android:backgroundTint="@color/green_material_900"
     app:cardCornerRadius="@dimen/common_corner_default">
 
@@ -43,8 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/common_margin_default"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:fontFamily="@font/poppins_regular"
             android:gravity="center"
+            android:maxLines="1"
             android:textColor="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cv_favorite_img_meal"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_img_popular"
@@ -12,16 +12,16 @@
         android:layout_margin="@dimen/common_margin_min"
         android:clipToPadding="true"
         app:cardCornerRadius="@dimen/common_corner_default"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_meal_popular"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:background="?attr/colorPrimaryVariant"
+            android:scaleType="centerCrop"
             tools:src="@mipmap/ic_launcher" />
 
     </androidx.cardview.widget.CardView>
@@ -30,15 +30,16 @@
         android:id="@+id/txt_title_popular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Popular name"
-        android:textSize="@dimen/common_size_normal"
         android:layout_marginHorizontal="@dimen/common_margin_min"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        android:maxLines="2"
         android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@id/cv_img_popular"
+        android:fontFamily="@font/poppins_regular"
+        android:maxLines="1"
+        android:text="Popular name"
+        android:textAlignment="center"
+        android:textSize="@dimen/common_size_popular"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@id/cv_img_popular"
-        app:layout_constraintStart_toStartOf="@id/cv_img_popular"/>
+        app:layout_constraintStart_toStartOf="@id/cv_img_popular"
+        app:layout_constraintTop_toBottomOf="@id/cv_img_popular" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

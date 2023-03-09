@@ -24,7 +24,7 @@
             app:cardCornerRadius="@dimen/common_corner_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/img_meal_by_category_meal"
@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/common_margin_default"
             android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:maxLines="1"
             android:padding="@dimen/common_padding_min"

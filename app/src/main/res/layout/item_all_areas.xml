@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/common_margin_item"
         android:background="@drawable/rounded_corners"
+        android:fontFamily="@font/poppins_regular"
         android:textAlignment="center"
         android:textSize="@dimen/common_size_min"
         tools:text="Area" />

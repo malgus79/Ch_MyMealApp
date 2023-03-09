@@ -5,11 +5,13 @@
     <dimen name="common_margin_item">4dp</dimen>
     <dimen name="common_margin_min">8dp</dimen>
     <dimen name="common_margin_default">16dp</dimen>
+    <dimen name="common_margin_24">24dp</dimen>
     <dimen name="common_margin_middle">32dp</dimen>
     <dimen name="common_margin_max">64dp</dimen>
 
     <!-- Dimens Size -->
     <dimen name="common_size_min">10sp</dimen>
+    <dimen name="common_size_popular">13sp</dimen>
     <dimen name="common_size_normal">15sp</dimen>
     <dimen name="common_size_default">20sp</dimen>
     <dimen name="common_size_title">25sp</dimen>

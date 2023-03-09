@@ -43,8 +43,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/common_margin_min"
+            android:fontFamily="@font/poppins_regular"
             android:gravity="center"
-            tools:text="@string/area_title"
             android:textSize="@dimen/common_size_default"
             android:textStyle="bold"
             android:visibility="gone"
@@ -52,6 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline_vertical"
             app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/area_title"
             tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView

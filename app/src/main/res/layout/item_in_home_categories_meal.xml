@@ -5,8 +5,8 @@
     android:id="@+id/cv_container_item_categories"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipToPadding="true"
     android:layout_margin="@dimen/common_margin_min"
+    android:clipToPadding="true"
     app:cardCornerRadius="@dimen/common_corner_middle">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,13 +18,13 @@
             android:id="@+id/cv_categories_img_meal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/common_padding_min"
-            android:elevation="@dimen/common_margin_default"
-            android:clipToPadding="true"
-            app:cardCornerRadius="@dimen/common_corner_middle"
             android:background="?attr/colorOnPrimary"
-            app:layout_constraintStart_toStartOf="parent"
+            android:clipToPadding="true"
+            android:elevation="@dimen/common_margin_default"
+            android:padding="@dimen/common_padding_min"
+            app:cardCornerRadius="@dimen/common_corner_middle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -32,13 +32,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
+                android:background="@color/grey_loading"
                 android:contentDescription="@string/item_in_home_categories_image"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
-                android:background="@color/grey_loading"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.cardview.widget.CardView>
 
@@ -47,11 +47,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/common_margin_default"
+            android:layout_marginTop="@dimen/common_margin_item"
             android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:maxLines="1"
             android:textColor="?attr/colorOnPrimary"
-            android:textSize="@dimen/common_size_normal"
+            android:textSize="@dimen/common_size_popular"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cv_categories_img_meal"
