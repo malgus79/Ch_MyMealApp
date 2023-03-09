@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -17,7 +16,6 @@ import com.mymealapp.core.hide
 import com.mymealapp.core.show
 import com.mymealapp.core.showToast
 import com.mymealapp.databinding.FragmentAreaBinding
-import com.mymealapp.databinding.ItemAllAreasBinding
 import com.mymealapp.model.data.Area
 import com.mymealapp.ui.fragment.area.adapter.AllAreasAdapter
 import com.mymealapp.ui.fragment.area.adapter.MealByAreaAdapter
@@ -49,7 +47,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
         swipeRefresh()
         setupMealByArea()
         setupAllAreasList()
-
+        showTitleSelectedArea()
 
         return binding.root
     }
@@ -76,7 +74,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
     }
 
     private fun setupMealByArea() {
-        viewModel.fetchAllAreas().observe(viewLifecycleOwner) {
+        viewModel.fetchMealByArea().observe(viewLifecycleOwner) {
             with(binding) {
                 when (it) {
                     is Resource.Loading -> {
@@ -142,7 +140,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
                             rvAllAreas.hide()
                             return@observe
                         }
-                        setupAreaRecyclerView()
+                        setupAllAreasListRecyclerView()
                         adapterAllAreas.setAllAreaList(it.data.meals.toMutableList())
                     }
                     is Resource.Failure -> {
@@ -154,7 +152,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
         }
     }
 
-    private fun setupAreaRecyclerView() {
+    private fun setupAllAreasListRecyclerView() {
         binding.rvAllAreas.apply {
             adapter = adapterAllAreas
             layoutManager = StaggeredGridLayoutManager(
@@ -164,6 +162,14 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
             itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
+        }
+    }
+
+    private fun showTitleSelectedArea() {
+        viewModel.mutableAreaSelected.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.txtTitleArea.text = it
+            }
         }
     }
 

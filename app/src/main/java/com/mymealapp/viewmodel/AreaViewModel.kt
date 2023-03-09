@@ -11,6 +11,7 @@ import javax.inject.Inject
 class AreaViewModel @Inject constructor(private val repo: RepositoryImpl) : ViewModel() {
 
     private val mutableAllAreas = MutableLiveData<String>()
+    val mutableAreaSelected: LiveData<String> = mutableAllAreas
 
     init {
         mutableAllAreas.value = "American"
@@ -20,7 +21,7 @@ class AreaViewModel @Inject constructor(private val repo: RepositoryImpl) : View
         mutableAllAreas.value = area
     }
 
-    fun fetchAllAreas() =
+    fun fetchMealByArea() =
         mutableAllAreas.distinctUntilChanged().switchMap {
             liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
                 emit(Resource.Loading)
@@ -41,6 +42,4 @@ class AreaViewModel @Inject constructor(private val repo: RepositoryImpl) : View
                 emit(Resource.Failure(e))
             }
         }
-
-
 }
