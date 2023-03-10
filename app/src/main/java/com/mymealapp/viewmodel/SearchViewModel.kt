@@ -11,17 +11,18 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val repo: RepositoryImpl) : ViewModel() {
 
-    private val mutableMealName = MutableLiveData<String>()
+    private val _mutableMealName = MutableLiveData<String>()
+    val mutableMealName: LiveData<String> = _mutableMealName
 
     fun setMeal(mealName: String) {
-        mutableMealName.value = mealName
+        _mutableMealName.value = mealName
     }
 
 //    init {
 //        setMeal("Arrabiata")
 //    }
 
-    val fetchMealList = mutableMealName.distinctUntilChanged().switchMap {
+    val fetchMealList = _mutableMealName.distinctUntilChanged().switchMap {
         liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
             emit(Resource.Loading)
             try {

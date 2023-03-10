@@ -33,14 +33,16 @@ class SearchFragment : Fragment() {
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         adapterSearch = SearchAdapter()
+        binding.searchView.setQuery("", true)
 
-        setupMealSearView()
-        setupObserver()
+        setupMealSearchView()
+        showMealSearched()
+        initMealSearched()
 
         return binding.root
     }
 
-    private fun setupObserver() {
+    private fun showMealSearched() {
         viewModel.fetchMealList.observe(viewLifecycleOwner) {
             with(binding) {
                 when (it) {
@@ -79,7 +81,7 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setupMealSearView() {
+    private fun setupMealSearchView() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
@@ -87,7 +89,7 @@ class SearchFragment : Fragment() {
                 if (!query.isNullOrEmpty()) {
                     viewModel.setMeal(query)
                 }
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -99,5 +101,13 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
+    }
+
+    private fun initMealSearched() {
+        viewModel.mutableMealName.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.searchView.setQuery(it, false)
+            }
+        }
     }
 }
