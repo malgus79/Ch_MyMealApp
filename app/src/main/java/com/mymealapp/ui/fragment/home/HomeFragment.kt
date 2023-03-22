@@ -27,6 +27,7 @@ import com.mymealapp.ui.fragment.home.adapter.CategoryAdapter
 import com.mymealapp.ui.fragment.home.adapter.PopularAdapter
 import com.mymealapp.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 import kotlin.random.Random
 
@@ -143,7 +144,8 @@ class HomeFragment : Fragment() {
 
     private fun setupPopularMealsRecyclerView() {
         binding.rvPopularMeal.apply {
-            adapter = adapterPopular
+            adapter = ScaleInAnimationAdapter(adapterPopular)
+            itemAnimator = LandingAnimator().apply { addDuration = 500 }
             layoutManager =
                 GridLayoutManager(
                     requireContext(),
@@ -151,7 +153,6 @@ class HomeFragment : Fragment() {
                     GridLayoutManager.HORIZONTAL,
                     false
                 )
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }
@@ -159,12 +160,12 @@ class HomeFragment : Fragment() {
 
     private fun setupCategoriesRecyclerView() {
         binding.rvCategoriesMeal.apply {
-            adapter = adapterCategory
+            adapter = ScaleInAnimationAdapter(adapterCategory)
+            itemAnimator = LandingAnimator().apply { addDuration = 500 }
             layoutManager = StaggeredGridLayoutManager(
                 resources.getInteger(R.integer.columns_categories_in_home),
                 StaggeredGridLayoutManager.VERTICAL
             )
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }

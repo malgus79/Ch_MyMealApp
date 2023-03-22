@@ -18,6 +18,7 @@ import com.mymealapp.model.data.Meal
 import com.mymealapp.ui.fragment.favorite.adapter.FavoriteAdapter
 import com.mymealapp.viewmodel.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
@@ -68,12 +69,12 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnMealFavoriteClickListener
 
     private fun setupFavoriteRecyclerView() {
         binding.rvFavoriteMeal.apply {
-            adapter = adapterFavorite
+            adapter = ScaleInAnimationAdapter(adapterFavorite)
+            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             layoutManager = StaggeredGridLayoutManager(
                 resources.getInteger(R.integer.columns_favorite),
                 StaggeredGridLayoutManager.VERTICAL
             )
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }

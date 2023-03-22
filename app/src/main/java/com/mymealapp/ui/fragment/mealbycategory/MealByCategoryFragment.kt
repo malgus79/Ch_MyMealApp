@@ -18,6 +18,7 @@ import com.mymealapp.databinding.FragmentMealByCategoryBinding
 import com.mymealapp.ui.fragment.mealbycategory.adapter.MealByCategoryAdapter
 import com.mymealapp.viewmodel.MealByCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
@@ -73,7 +74,8 @@ class MealByCategoryFragment : Fragment() {
 
     private fun setupMealByCategoryRecyclerView() {
         binding.rvMealByCategoryMeal.apply {
-            adapter = adapterMealByCategory
+            adapter = ScaleInAnimationAdapter(adapterMealByCategory)
+            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             layoutManager =
                 GridLayoutManager(
                     requireContext(),
@@ -81,7 +83,6 @@ class MealByCategoryFragment : Fragment() {
                     GridLayoutManager.VERTICAL,
                     false
                 )
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }

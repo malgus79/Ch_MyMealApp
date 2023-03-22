@@ -21,6 +21,7 @@ import com.mymealapp.ui.fragment.area.adapter.AllAreasAdapter
 import com.mymealapp.ui.fragment.area.adapter.MealByAreaAdapter
 import com.mymealapp.viewmodel.AreaViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
@@ -110,12 +111,12 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
 
     private fun setupMealByAreaRecyclerView() {
         binding.rvMealsByArea.apply {
-            adapter = adapterMealByArea
+            adapter = ScaleInAnimationAdapter(adapterMealByArea)
+            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             layoutManager = StaggeredGridLayoutManager(
                 resources.getInteger(R.integer.columns_meals_by_area),
                 StaggeredGridLayoutManager.VERTICAL
             )
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }
@@ -154,12 +155,12 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
 
     private fun setupAllAreasListRecyclerView() {
         binding.rvAllAreas.apply {
-            adapter = adapterAllAreas
+            adapter = ScaleInAnimationAdapter(adapterAllAreas)
+            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             layoutManager = StaggeredGridLayoutManager(
                 resources.getInteger(R.integer.columns_all_areas),
                 StaggeredGridLayoutManager.VERTICAL
             )
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }

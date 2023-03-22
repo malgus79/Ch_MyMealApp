@@ -20,6 +20,7 @@ import com.mymealapp.databinding.FragmentCategoriesBinding
 import com.mymealapp.ui.fragment.categories.adapter.CategoriesAdapter
 import com.mymealapp.viewmodel.CategoriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
@@ -95,12 +96,12 @@ class CategoriesFragment : Fragment() {
 
     private fun setupCategoriesRecyclerView() {
         binding.rvCategoriesMeal.apply {
-            adapter = adapterCategories
+            adapter = ScaleInAnimationAdapter(adapterCategories)
+            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             layoutManager = StaggeredGridLayoutManager(
                 resources.getInteger(R.integer.columns_categories),
                 StaggeredGridLayoutManager.VERTICAL
             )
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
             setHasFixedSize(true)
             show()
         }
