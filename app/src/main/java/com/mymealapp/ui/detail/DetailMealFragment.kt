@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.mymealapp.R
 import com.mymealapp.core.loadImage
+import com.mymealapp.core.setYoutubeClickListener
 import com.mymealapp.core.showToast
 import com.mymealapp.data.model.Meal
 import com.mymealapp.databinding.FragmentDetailMealBinding
@@ -73,13 +74,7 @@ class DetailMealFragment : Fragment() {
     }
 
     private fun showYoutubeVideo() {
-        binding.imgYoutubeWatchVideo.setOnClickListener {
-            try {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(meal.youtube)))
-            } catch (e: Exception) {
-                showToast("${e.message}")
-            }
-        }
+        binding.imgYoutubeWatchVideo.setYoutubeClickListener(meal.youtube.toString())
     }
 
     private fun isFavoriteMeal() {

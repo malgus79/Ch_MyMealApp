@@ -1,6 +1,8 @@
 package com.mymealapp.core
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -77,4 +79,15 @@ fun loadImage(context: Context, url: String, imageView: ImageView) {
         .error(R.drawable.gradient)
         .centerCrop()
         .into(imageView)
+}
+
+fun View.setYoutubeClickListener(youtubeUrl: String) {
+    setOnClickListener {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl))
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(context, "${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
