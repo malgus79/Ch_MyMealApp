@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.mymealapp.R
 import com.mymealapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
-    private var booleanState: Boolean? = null
+    private var isFirstTime = true
 
     private val viewModel by viewModels<MainActivityViewModel>()
 
@@ -65,21 +65,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkNetworkConnection() {
         lifecycleScope.launchWhenCreated {
-            viewModel.isConnected.collectLatest { isConnected ->
-
-                if (booleanState == null && isConnected) {
-                    booleanState = false
-                }
-
-                if (booleanState == false && !isConnected) {
-                    snackBarConnectivityOff()
-                    booleanState = true
-                }
-
-                if (booleanState == true && isConnected) {
+            viewModel.isConnected.distinctUntilChanged().collect { isConnected ->
+                if (isConnected && !isFirstTime) {
                     snackBarConnectivityOn()
-                    booleanState = false
+                } else if (!isConnected) {
+                    snackBarConnectivityOff()
                 }
+                isFirstTime = false
             }
         }
     }
