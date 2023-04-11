@@ -8,16 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import com.mymealapp.R
-import com.mymealapp.core.Resource
-import com.mymealapp.core.hide
-import com.mymealapp.core.show
-import com.mymealapp.core.showToast
+import com.mymealapp.core.*
 import com.mymealapp.databinding.FragmentMealByCategoryBinding
 import com.mymealapp.ui.mealbycategory.adapter.MealByCategoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
@@ -72,19 +67,12 @@ class MealByCategoryFragment : Fragment() {
     }
 
     private fun setupMealByCategoryRecyclerView() {
-        binding.rvMealByCategoryMeal.apply {
-            adapter = ScaleInAnimationAdapter(adapterMealByCategory)
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
-            layoutManager =
-                GridLayoutManager(
-                    requireContext(),
-                    resources.getInteger(R.integer.columns_meals_by_category),
-                    GridLayoutManager.VERTICAL,
-                    false
-                )
-            setHasFixedSize(true)
-            show()
-        }
+        binding.rvMealByCategoryMeal.setupRecyclerView(
+            adapterMealByCategory,
+            resources.getInteger(R.integer.columns_meals_by_category),
+            LandingAnimator(),
+            true
+        )
     }
 
     private fun showTitleMealByCategory() {

@@ -9,18 +9,13 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mymealapp.R
-import com.mymealapp.core.Resource
-import com.mymealapp.core.hide
-import com.mymealapp.core.show
-import com.mymealapp.core.showToast
-import com.mymealapp.databinding.FragmentAreaBinding
+import com.mymealapp.core.*
 import com.mymealapp.data.model.Area
+import com.mymealapp.databinding.FragmentAreaBinding
 import com.mymealapp.ui.area.adapter.AllAreasAdapter
 import com.mymealapp.ui.area.adapter.MealByAreaAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
@@ -109,16 +104,12 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
     }
 
     private fun setupMealByAreaRecyclerView() {
-        binding.rvMealsByArea.apply {
-            adapter = ScaleInAnimationAdapter(adapterMealByArea)
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
-            layoutManager = StaggeredGridLayoutManager(
-                resources.getInteger(R.integer.columns_meals_by_area),
-                StaggeredGridLayoutManager.VERTICAL
-            )
-            setHasFixedSize(true)
-            show()
-        }
+        binding.rvMealsByArea.setupRecyclerView(
+            adapterMealByArea,
+            resources.getInteger(R.integer.columns_meals_by_area),
+            LandingAnimator(),
+            true
+        )
     }
 
     private fun setupAllAreasList() {
@@ -153,16 +144,12 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
     }
 
     private fun setupAllAreasListRecyclerView() {
-        binding.rvAllAreas.apply {
-            adapter = ScaleInAnimationAdapter(adapterAllAreas)
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
-            layoutManager = StaggeredGridLayoutManager(
-                resources.getInteger(R.integer.columns_all_areas),
-                StaggeredGridLayoutManager.VERTICAL
-            )
-            setHasFixedSize(true)
-            show()
-        }
+        binding.rvAllAreas.setupRecyclerView(
+            adapterAllAreas,
+            resources.getInteger(R.integer.columns_all_areas),
+            LandingAnimator(),
+            true
+        )
     }
 
     private fun showTitleSelectedArea() {

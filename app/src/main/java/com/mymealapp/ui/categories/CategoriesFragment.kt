@@ -9,16 +9,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mymealapp.R
-import com.mymealapp.core.Resource
-import com.mymealapp.core.hide
-import com.mymealapp.core.show
-import com.mymealapp.core.showToast
+import com.mymealapp.core.*
 import com.mymealapp.databinding.FragmentCategoriesBinding
 import com.mymealapp.ui.categories.adapter.CategoriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
@@ -93,15 +88,11 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun setupCategoriesRecyclerView() {
-        binding.rvCategoriesMeal.apply {
-            adapter = ScaleInAnimationAdapter(adapterCategories)
-            itemAnimator = LandingAnimator().apply { addDuration = 300 }
-            layoutManager = StaggeredGridLayoutManager(
-                resources.getInteger(R.integer.columns_categories),
-                StaggeredGridLayoutManager.VERTICAL
-            )
-            setHasFixedSize(true)
-            show()
-        }
+        binding.rvCategoriesMeal.setupRecyclerView(
+            adapterCategories,
+            resources.getInteger(R.integer.columns_categories),
+            LandingAnimator(),
+            true
+        )
     }
 }

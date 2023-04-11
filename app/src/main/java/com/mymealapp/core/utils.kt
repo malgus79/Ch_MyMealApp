@@ -5,6 +5,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 
 fun View.show() {
     visibility = View.VISIBLE
@@ -41,4 +44,22 @@ fun Fragment.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+fun RecyclerView.setupRecyclerView(
+    adapter: RecyclerView.Adapter<*>,
+    columns: Int,
+    itemAnimator: RecyclerView.ItemAnimator,
+    vertical: Boolean
+) {
+    this.apply {
+        this.adapter = ScaleInAnimationAdapter(adapter)
+        this.itemAnimator = itemAnimator.apply { addDuration = 500 }
+        this.layoutManager = StaggeredGridLayoutManager(
+            columns,
+            if (vertical) StaggeredGridLayoutManager.VERTICAL else StaggeredGridLayoutManager.HORIZONTAL
+        )
+        setHasFixedSize(true)
+        show()
+    }
 }

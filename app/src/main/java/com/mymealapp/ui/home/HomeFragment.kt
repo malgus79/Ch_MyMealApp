@@ -10,22 +10,16 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
-import com.mymealapp.core.Resource
-import com.mymealapp.core.hide
-import com.mymealapp.core.show
-import com.mymealapp.core.showToast
-import com.mymealapp.databinding.FragmentHomeBinding
+import com.mymealapp.core.*
 import com.mymealapp.data.model.Meal
+import com.mymealapp.databinding.FragmentHomeBinding
 import com.mymealapp.ui.home.adapter.CategoryAdapter
 import com.mymealapp.ui.home.adapter.PopularAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 import kotlin.random.Random
 
@@ -141,31 +135,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupPopularMealsRecyclerView() {
-        binding.rvPopularMeal.apply {
-            adapter = ScaleInAnimationAdapter(adapterPopular)
-            itemAnimator = LandingAnimator().apply { addDuration = 500 }
-            layoutManager =
-                GridLayoutManager(
-                    requireContext(),
-                    resources.getInteger(R.integer.columns_popular),
-                    GridLayoutManager.HORIZONTAL,
-                    false
-                )
-            setHasFixedSize(true)
-            show()
-        }
+        binding.rvPopularMeal.setupRecyclerView(
+            adapterPopular,
+            resources.getInteger(R.integer.columns_popular),
+            LandingAnimator(),
+            false
+        )
     }
 
     private fun setupCategoriesRecyclerView() {
-        binding.rvCategoriesMeal.apply {
-            adapter = ScaleInAnimationAdapter(adapterCategory)
-            itemAnimator = LandingAnimator().apply { addDuration = 500 }
-            layoutManager = StaggeredGridLayoutManager(
-                resources.getInteger(R.integer.columns_categories_in_home),
-                StaggeredGridLayoutManager.VERTICAL
-            )
-            setHasFixedSize(true)
-            show()
-        }
+        binding.rvCategoriesMeal.setupRecyclerView(
+            adapterCategory,
+            resources.getInteger(R.integer.columns_categories_in_home),
+            LandingAnimator(),
+            true
+        )
     }
 }
