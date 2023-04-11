@@ -1,7 +1,7 @@
 package com.mymealapp.accessdata
 
 import com.google.gson.Gson
-import com.mymealapp.model.data.MealByCategoryList
+import com.mymealapp.data.model.MealByCategoryList
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.MatcherAssert.assertThat

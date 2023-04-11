@@ -1,10 +1,10 @@
 package com.mymealapp.accessdata
 
 import com.google.gson.Gson
-import com.mymealapp.model.data.AreaList
-import com.mymealapp.model.data.CategoryList
-import com.mymealapp.model.data.MealByCategoryList
-import com.mymealapp.model.data.MealList
+import com.mymealapp.data.model.AreaList
+import com.mymealapp.data.model.CategoryList
+import com.mymealapp.data.model.MealByCategoryList
+import com.mymealapp.data.model.MealList
 import java.io.InputStreamReader
 
 class JSONFileLoader {

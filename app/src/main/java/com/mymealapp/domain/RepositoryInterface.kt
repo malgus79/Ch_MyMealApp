@@ -2,7 +2,7 @@ package com.mymealapp.domain
 
 import androidx.lifecycle.LiveData
 import com.mymealapp.core.Resource
-import com.mymealapp.model.data.*
+import com.mymealapp.data.model.*
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryInterface {
@@ -34,7 +34,7 @@ interface RepositoryInterface {
     suspend fun getPopularMeals(categoryName: String): MealByCategoryList
 
     /*------------------------------ All area list ------------------------------*/
-    suspend fun getAllAreaList(area:String):AreaList
+    suspend fun getAllAreaList(area:String): AreaList
 
     /*------------------------------ Meal by area ------------------------------*/
     suspend fun getMealByArea(area: String): MealList

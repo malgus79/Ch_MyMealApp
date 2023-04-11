@@ -2,10 +2,10 @@ package com.mymealapp.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.mymealapp.accessdata.JSONFileLoader
-import com.mymealapp.core.Constants
-import com.mymealapp.model.data.Category
-import com.mymealapp.model.data.MealByCategory
-import com.mymealapp.model.remote.ApiService
+import com.mymealapp.app.Constants
+import com.mymealapp.data.model.Category
+import com.mymealapp.data.model.MealByCategory
+import com.mymealapp.data.remote.ApiService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat

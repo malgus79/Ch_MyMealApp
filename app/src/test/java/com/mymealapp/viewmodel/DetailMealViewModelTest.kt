@@ -1,10 +1,9 @@
 package com.mymealapp.viewmodel
 
 import com.mymealapp.accessdata.JSONFileLoader
-import com.mymealapp.core.Constants
-import com.mymealapp.model.data.Meal
-import com.mymealapp.model.data.MealByCategory
-import com.mymealapp.model.remote.ApiService
+import com.mymealapp.app.Constants
+import com.mymealapp.data.model.Meal
+import com.mymealapp.data.remote.ApiService
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`

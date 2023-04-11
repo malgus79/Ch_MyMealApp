@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryVariant"
-    tools:context=".ui.activities.MainActivity">
+    android:background="?attr/colorPrimaryVariant">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_search_view"
@@ -33,13 +32,13 @@
     <include
         android:id="@+id/empty_container"
         layout="@layout/empty_container"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mcv_search_view" />
+        app:layout_constraintTop_toBottomOf="@id/mcv_search_view"
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBar"

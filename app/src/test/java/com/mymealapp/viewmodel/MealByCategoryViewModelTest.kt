@@ -4,9 +4,9 @@ import com.mymealapp.accessdata.JSONFileLoader
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.notNullValue
-import com.mymealapp.core.Constants
-import com.mymealapp.model.data.MealByCategory
-import com.mymealapp.model.remote.ApiService
+import com.mymealapp.app.Constants
+import com.mymealapp.data.model.MealByCategory
+import com.mymealapp.data.remote.ApiService
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.BeforeClass

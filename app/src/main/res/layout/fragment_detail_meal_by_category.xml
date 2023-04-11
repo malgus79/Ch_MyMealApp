@@ -5,8 +5,7 @@
     android:id="@+id/coordinator_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_material_900"
-    tools:context=".ui.activities.MainActivity">
+    android:background="@color/green_material_900">
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progress_bar"
