@@ -13,13 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
+import com.mymealapp.core.loadImage
 import com.mymealapp.core.showToast
-import com.mymealapp.databinding.FragmentDetailMealByCategoryBinding
 import com.mymealapp.data.model.Meal
+import com.mymealapp.databinding.FragmentDetailMealByCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -62,13 +60,7 @@ class DetailMealByCategoryFragment : Fragment() {
     private fun loadData(meal: Meal) {
         with(binding) {
             try {
-                Glide.with(this@DetailMealByCategoryFragment)
-                    .load(meal.image)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .error(R.drawable.gradient)
-                    .centerCrop()
-                    .into(imgAppBar)
+                loadImage(requireContext(), meal.image.toString(), imgAppBar)
 
                 val category = "${getString(R.string.category_detail)} ${meal.category} "
                 val area = "${getString(R.string.area_detail)} ${meal.area} "

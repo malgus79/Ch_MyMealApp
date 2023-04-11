@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mymealapp.R
-import com.mymealapp.databinding.ItemMealByCategoryBinding
+import com.mymealapp.core.loadImage
 import com.mymealapp.data.model.MealByCategory
+import com.mymealapp.databinding.ItemMealByCategoryBinding
 import com.mymealapp.ui.mealbycategory.MealByCategoryFragmentDirections
 
 class MealByCategoryAdapter : RecyclerView.Adapter<MealByCategoryAdapter.ViewHolder>() {
@@ -36,22 +33,22 @@ class MealByCategoryAdapter : RecyclerView.Adapter<MealByCategoryAdapter.ViewHol
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(mealByCategory: MealByCategory) {
-            Glide.with(binding.root.context)
-                .load(mealByCategory.image)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgMealByCategoryMeal)
+            with(binding) {
+                loadImage(
+                    root.context,
+                    mealByCategory.image.toString(),
+                    imgMealByCategoryMeal
+                )
 
-            binding.txtMealByCategoryName.text = mealByCategory.name
+                txtMealByCategoryName.text = mealByCategory.name
 
-            binding.cvContainerItemMealByCategory.setOnClickListener {
-                val action =
-                    MealByCategoryFragmentDirections.actionMealByCategoryFragmentToMealDetailByCategoryFragment(
-                        mealByCategory.idMeal.toString()
-                    )
-                this.itemView.findNavController().navigate(action)
+                cvContainerItemMealByCategory.setOnClickListener {
+                    val action =
+                        MealByCategoryFragmentDirections.actionMealByCategoryFragmentToMealDetailByCategoryFragment(
+                            mealByCategory.idMeal.toString()
+                        )
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

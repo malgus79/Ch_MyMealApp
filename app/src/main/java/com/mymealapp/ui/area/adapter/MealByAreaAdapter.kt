@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mymealapp.R
-import com.mymealapp.databinding.ItemMealsByAreaBinding
+import com.mymealapp.core.loadImage
 import com.mymealapp.data.model.Meal
+import com.mymealapp.databinding.ItemMealsByAreaBinding
 import com.mymealapp.ui.area.AreaFragmentDirections
 
 class MealByAreaAdapter :
@@ -41,22 +38,18 @@ class MealByAreaAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(meal: Meal) {
-            Glide.with(binding.root.context)
-                .load(meal.image)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgMeal)
+            with(binding) {
+                loadImage(root.context, meal.image.toString(), imgMeal)
 
-            binding.txtTitleMeal.text = meal.name
+                txtTitleMeal.text = meal.name
 
-            binding.mcvContainer.setOnClickListener {
-                val action =
-                    AreaFragmentDirections.actionAreaFragmentToMealDetailByCategoryFragment(
-                        meal.idMeal
-                    )
-                this.itemView.findNavController().navigate(action)
+                mcvContainer.setOnClickListener {
+                    val action =
+                        AreaFragmentDirections.actionAreaFragmentToMealDetailByCategoryFragment(
+                            meal.idMeal
+                        )
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

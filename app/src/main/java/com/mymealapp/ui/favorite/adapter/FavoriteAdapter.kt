@@ -4,12 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mymealapp.R
-import com.mymealapp.databinding.ItemFavoriteMealBinding
+import com.mymealapp.core.loadImage
 import com.mymealapp.data.model.Meal
+import com.mymealapp.databinding.ItemFavoriteMealBinding
 
 class FavoriteAdapter(
     private val context: Context,
@@ -39,23 +36,19 @@ class FavoriteAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(meal: Meal) {
-            Glide.with(context)
-                .load(meal.image)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgFavoriteMeal)
+            with(binding) {
+                loadImage(context, meal.image.toString(), imgFavoriteMeal)
 
-            binding.txtFavoriteNameMeal.text = meal.name
+                txtFavoriteNameMeal.text = meal.name
 
-            binding.cvContainerItemFavorite.setOnClickListener {
-                itemClickListener.onMealClick(meal)
-            }
+                cvContainerItemFavorite.setOnClickListener {
+                    itemClickListener.onMealClick(meal)
+                }
 
-            binding.cvContainerItemFavorite.setOnLongClickListener {
-                itemClickListener.onMealLongClick(meal)
-                return@setOnLongClickListener true
+                cvContainerItemFavorite.setOnLongClickListener {
+                    itemClickListener.onMealLongClick(meal)
+                    return@setOnLongClickListener true
+                }
             }
         }
     }

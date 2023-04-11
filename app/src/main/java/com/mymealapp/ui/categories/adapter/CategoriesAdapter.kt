@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mymealapp.R
-import com.mymealapp.databinding.ItemCategoriesMealBinding
+import com.mymealapp.core.loadImage
 import com.mymealapp.data.model.Category
+import com.mymealapp.databinding.ItemCategoriesMealBinding
 import com.mymealapp.ui.categories.CategoriesFragmentDirections
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
@@ -37,23 +34,23 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(categories: Category) {
-            Glide.with(binding.root.context)
-                .load(categories.imageCategory)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgCategoriesMeal)
+            with(binding) {
+                loadImage(
+                    root.context,
+                    categories.imageCategory.toString(),
+                    imgCategoriesMeal
+                )
 
-            binding.txtCategoriesName.text = categories.nameCategory
-            binding.txtCategoriesDescription.text = categories.descriptionCategory
+                txtCategoriesName.text = categories.nameCategory
+                txtCategoriesDescription.text = categories.descriptionCategory
 
-            binding.cvContainerItemCategories.setOnClickListener {
-                val action =
-                    CategoriesFragmentDirections.actionCategoriesFragmentToMealByCategoryFragment(
-                        categories.nameCategory.toString()
-                    )
-                this.itemView.findNavController().navigate(action)
+                cvContainerItemCategories.setOnClickListener {
+                    val action =
+                        CategoriesFragmentDirections.actionCategoriesFragmentToMealByCategoryFragment(
+                            categories.nameCategory.toString()
+                        )
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

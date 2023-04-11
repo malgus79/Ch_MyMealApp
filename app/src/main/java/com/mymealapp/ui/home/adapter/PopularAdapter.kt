@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mymealapp.R
-import com.mymealapp.databinding.ItemPopularMealBinding
+import com.mymealapp.core.loadImage
 import com.mymealapp.data.model.MealByCategory
+import com.mymealapp.databinding.ItemPopularMealBinding
 import com.mymealapp.ui.home.HomeFragmentDirections
 
 class PopularAdapter : RecyclerView.Adapter<PopularAdapter.VieHolder>() {
@@ -36,13 +33,7 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.VieHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(mealPopular: MealByCategory) {
-            Glide.with(binding.root.context)
-                .load(mealPopular.image)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgMealPopular)
+            loadImage(binding.root.context, mealPopular.image.toString(), binding.imgMealPopular)
 
             binding.txtTitlePopular.text = mealPopular.name
 

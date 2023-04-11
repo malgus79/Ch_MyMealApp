@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mymealapp.R
-import com.mymealapp.databinding.ItemInHomeCategoriesMealBinding
+import com.mymealapp.core.loadImage
 import com.mymealapp.data.model.Category
+import com.mymealapp.databinding.ItemInHomeCategoriesMealBinding
 import com.mymealapp.ui.home.HomeFragmentDirections
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
@@ -23,7 +20,11 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            ItemInHomeCategoriesMealBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemInHomeCategoriesMealBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return ViewHolder(itemBinding)
     }
 
@@ -37,13 +38,11 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(category: Category) {
-            Glide.with(binding.root.context)
-                .load(category.imageCategory)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgCategoriesMeal)
+            loadImage(
+                binding.root.context,
+                category.imageCategory.toString(),
+                binding.imgCategoriesMeal
+            )
 
             binding.txtCategoriesName.text = category.nameCategory
 

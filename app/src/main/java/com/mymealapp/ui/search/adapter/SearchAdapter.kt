@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mymealapp.R
-import com.mymealapp.databinding.ItemSearchMealBinding
+import com.mymealapp.core.loadImage
 import com.mymealapp.data.model.Meal
+import com.mymealapp.databinding.ItemSearchMealBinding
 import com.mymealapp.ui.search.SearchFragmentDirections
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.VieHolder>() {
@@ -24,19 +21,15 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.VieHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(meal: Meal) {
-            Glide.with(binding.root.context)
-                .load(meal.image)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.gradient)
-                .centerCrop()
-                .into(binding.imgSearchMeal)
+            with(binding) {
+                loadImage(root.context, meal.image.toString(), imgSearchMeal)
 
-            binding.txtTitle.text = meal.name
+                txtTitle.text = meal.name
 
-            binding.cvContainer.setOnClickListener {
-                val action = SearchFragmentDirections.actionSearchFragmentToMealDetailFragment(meal)
-                this.itemView.findNavController().navigate(action)
+                cvContainer.setOnClickListener {
+                    val action = SearchFragmentDirections.actionSearchFragmentToMealDetailFragment(meal)
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }
