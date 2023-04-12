@@ -13,6 +13,7 @@
     <string name="no_connection">No internet connection</string>
     <string name="rule_out">Rule Out</string>
     <string name="error_detail">An error occurred while obtaining the information</string>
+    <string name="press_again">Press back again to exit</string>
 
     <!-- Categories -->
     <string name="categories">Categories</string>
@@ -54,6 +55,5 @@
 
     <!-- Splash -->
     <string name="logo_splash">Logo splash</string>
-
 
 </resources>
