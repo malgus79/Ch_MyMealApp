@@ -7,6 +7,9 @@ import com.mymealapp.data.local.MealEntity
 import com.mymealapp.data.model.*
 import com.mymealapp.data.remote.RemoteDataSource
 import com.mymealapp.domain.RepositoryInterface
+import com.mymealapp.domain.common.Result
+import com.mymealapp.domain.common.fold
+import com.mymealapp.domain.common.makeSafeRequest
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -80,8 +83,19 @@ class RepositoryImpl @Inject constructor(
     }
 
     /*------------------------------ Categories ------------------------------*/
-    override suspend fun getCategoriesMeal(): CategoryList {
-        return remoteDataSource.getCategoriesMeal()
+    override suspend fun getCategoriesMeal(): Result<List<Category>> {
+        val response = makeSafeRequest { remoteDataSource.getCategoriesMeal() }
+        return response.fold(
+            onSuccess = {
+                Result.Success(it.categories)
+            },
+            onError = { code, message ->
+                Result.Error(code, message)
+            },
+            onException = {
+                Result.Exception(it)
+            }
+        )
     }
 
     /*------------------------------ Meal by category ------------------------------*/
@@ -100,12 +114,34 @@ class RepositoryImpl @Inject constructor(
     }
 
     /*------------------------------ All area list ------------------------------*/
-    override suspend fun getAllAreaList(area: String): AreaList {
-        return remoteDataSource.getAllAreaList(area)
+    override suspend fun getAllAreaList(area: String): Result<List<Area>> {
+        val response = makeSafeRequest { remoteDataSource.getAllAreaList(area) }
+        return response.fold(
+            onSuccess = {
+                Result.Success(it.meals)
+            },
+            onError = { code, message ->
+                Result.Error(code, message)
+            },
+            onException = {
+                Result.Exception(it)
+            }
+        )
     }
 
     /*------------------------------ Meal by area ------------------------------*/
-    override suspend fun getMealByArea(area: String): MealList {
-        return remoteDataSource.getMealByArea(area)
+    override suspend fun getMealByArea(area: String): Result<List<Meal>> {
+        val response = makeSafeRequest { remoteDataSource.getMealByArea(area) }
+        return response.fold(
+            onSuccess = {
+                Result.Success(it.meals)
+            },
+            onError = { code, message ->
+                Result.Error(code, message)
+            },
+            onException = {
+                Result.Exception(it)
+            }
+        )
     }
 }

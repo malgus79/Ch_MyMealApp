@@ -9,8 +9,15 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mymealapp.R
-import com.mymealapp.core.*
+import com.mymealapp.core.hide
+import com.mymealapp.core.hideElements
+import com.mymealapp.core.hideRefresh
+import com.mymealapp.core.setRetryAction
+import com.mymealapp.core.setupRecyclerView
+import com.mymealapp.core.show
+import com.mymealapp.core.showElements
 import com.mymealapp.data.model.Area
 import com.mymealapp.databinding.FragmentAreaBinding
 import com.mymealapp.ui.area.adapter.AllAreasAdapter
@@ -40,8 +47,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
         binding = FragmentAreaBinding.inflate(inflater, container, false)
 
         swipeRefresh()
-        setupMealByArea()
-        setupAllAreasList()
+        setupArea()
         showTitleSelectedArea()
 
         return binding.root
@@ -57,8 +63,7 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
                 ContextCompat.getColor(requireContext(), R.color.grey_loading)
             )
             Handler(Looper.getMainLooper()).postDelayed({
-                setupMealByArea()
-                setupAllAreasList()
+                setupArea()
             }, 500)
         }
     }
@@ -68,35 +73,57 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
         binding.swipeRefreshLayout.isRefreshing = false
     }
 
-    private fun setupMealByArea() {
-        viewModel.fetchMealByArea().observe(viewLifecycleOwner) {
+    private fun setupArea() {
+        viewModel.fetchArea()
+        viewModel.areaState.observe(viewLifecycleOwner) {
             with(binding) {
                 when (it) {
-                    is Resource.Loading -> {
-                        rvMealsByArea.hide()
-                        txtTitleArea.hide()
-
-                        if (swipeRefreshLayout.isRefreshing) {
-                            progressBar.hide()
-                        } else {
-                            progressBar.show()
+                    is AreaState.Loading -> {
+                        hideElements(containerError.root, rvMealsByArea)
+                        progressBar.apply {
+                            if (swipeRefreshLayout.isRefreshing) hide() else show()
                         }
                     }
-                    is Resource.Success -> {
-                        progressBar.hide()
-                        swipeRefreshLayout.isRefreshing = false
-                        if (it.data.meals.isEmpty()) {
-                            binding.rvMealsByArea.hide()
+
+                    is AreaState.SuccessAreaList -> {
+                        hideElements(containerError.root, progressBar)
+                        showElements(rvAllAreas)
+                        swipeRefreshLayout.hideRefresh()
+
+                        if (it.areas.isEmpty()) {
+                            hideElements(rvAllAreas)
                             return@observe
                         }
-                        setupMealByAreaRecyclerView()
-                        adapterMealByArea.setMealByAreaList(it.data.meals)
-                        txtTitleArea.show()
+
+                        setupAllAreasListRecyclerView()
+                        adapterAllAreas.setAllAreaList(it.areas.toMutableList())
                     }
-                    is Resource.Failure -> {
-                        progressBar.hide()
-                        swipeRefreshLayout.isRefreshing = false
-                        showToast(getString(R.string.error_detail))
+
+                    is AreaState.SuccessByArea -> {
+                        hideElements(containerError.root, progressBar)
+                        showElements(rvMealsByArea, txtTitleArea)
+                        swipeRefreshLayout.hideRefresh()
+
+                        if (it.meal.isEmpty()) {
+                            hideElements(rvMealsByArea)
+                            return@observe
+                        }
+
+                        setupMealByAreaRecyclerView()
+                        adapterMealByArea.setMealByAreaList(it.meal)
+                    }
+
+                    is AreaState.Failure -> {
+                        hideElements(progressBar, rvAllAreas, rvMealsByArea, txtTitleArea)
+                        showElements(containerError.root)
+                        swipeRefreshLayout.hideRefresh()
+
+                        btnRetry()
+
+                        if (it.error != null) {
+                            val errorMessage = getString(it.error.errorMessage)
+                            containerError.textView.text = errorMessage
+                        }
                     }
                 }
             }
@@ -112,44 +139,25 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
         )
     }
 
-    private fun setupAllAreasList() {
-        viewModel.fetchAllAreaList().observe(viewLifecycleOwner) {
-            with(binding) {
-                when (it) {
-                    is Resource.Loading -> {
-                        rvAllAreas.hide()
-
-                        if (swipeRefreshLayout.isRefreshing) {
-                            progressBar.hide()
-                        } else {
-                            progressBar.show()
-                        }
-                    }
-                    is Resource.Success -> {
-                        progressBar.hide()
-                        if (it.data.meals.isEmpty()) {
-                            rvAllAreas.hide()
-                            return@observe
-                        }
-                        setupAllAreasListRecyclerView()
-                        adapterAllAreas.setAllAreaList(it.data.meals.toMutableList())
-                    }
-                    is Resource.Failure -> {
-                        progressBar.hide()
-                        showToast(getString(R.string.error_detail))
-                    }
-                }
-            }
+    private fun btnRetry() {
+        binding.containerError.btnRetry.setRetryAction {
+            //setupAllAreasList()
+            //setupMealByArea()
+            setupArea()
         }
     }
 
     private fun setupAllAreasListRecyclerView() {
-        binding.rvAllAreas.setupRecyclerView(
-            adapterAllAreas,
-            resources.getInteger(R.integer.columns_all_areas),
-            LandingAnimator(),
-            true
-        )
+        binding.rvAllAreas.apply {
+            adapter = adapterAllAreas
+            layoutManager = GridLayoutManager(
+                requireContext(),
+                resources.getInteger(R.integer.columns_all_areas),
+                GridLayoutManager.VERTICAL,
+                false
+            )
+            setHasFixedSize(true)
+        }
     }
 
     private fun showTitleSelectedArea() {
@@ -163,5 +171,6 @@ class AreaFragment : Fragment(), AllAreasAdapter.OnAreaClickListener {
     override fun onAreaClick(area: String) {
         viewModel.setAllAreas(area)
         binding.txtTitleArea.text = area
+        setupArea()
     }
 }

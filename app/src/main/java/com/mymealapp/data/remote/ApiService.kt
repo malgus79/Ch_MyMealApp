@@ -4,6 +4,7 @@ import com.mymealapp.data.model.AreaList
 import com.mymealapp.data.model.CategoryList
 import com.mymealapp.data.model.MealByCategoryList
 import com.mymealapp.data.model.MealList
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,7 +19,7 @@ interface ApiService {
     suspend fun getRandomMeal(): MealList
 
     @GET("categories.php")
-    suspend fun getCategoriesMeal(): CategoryList
+    suspend fun getCategoriesMeal(): Response<CategoryList>
 
     @GET("filter.php")
     suspend fun getMealByCategory(@Query("c") nameOfCategory: String): MealByCategoryList
@@ -30,8 +31,8 @@ interface ApiService {
     suspend fun getPopularMeals(@Query("c") categoryName: String): MealByCategoryList
 
     @GET("list.php")
-    suspend fun getAllAreaList(@Query(value = "a") area: String): AreaList
+    suspend fun getAllAreaList(@Query(value = "a") area: String): Response<AreaList>
 
     @GET("filter.php")
-    suspend fun getMealByArea(@Query(value = "a") area: String): MealList
+    suspend fun getMealByArea(@Query(value = "a") area: String): Response<MealList>
 }

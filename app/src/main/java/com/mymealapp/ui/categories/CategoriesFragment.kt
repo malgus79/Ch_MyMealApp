@@ -57,33 +57,48 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun setupCategoriesMeal() {
-        viewModel.fetchCategoriesMeal().observe(viewLifecycleOwner) {
+        viewModel.fetchCategoriesMeal()
+        viewModel.categoriesState.observe(viewLifecycleOwner) {
             with(binding) {
                 when (it) {
-                    is Resource.Loading -> {
-                        if (swipeRefreshLayout.isRefreshing) {
-                            progressBar.hide()
-                        } else {
-                            progressBar.show()
+                    is CategoriesState.Loading -> {
+                        hideElements(containerError.root)
+                        progressBar.apply {
+                            if (swipeRefreshLayout.isRefreshing) hide() else show()
                         }
                     }
-                    is Resource.Success -> {
-                        progressBar.hide()
-                        swipeRefreshLayout.isRefreshing = false
-                        if (it.data.categories.isEmpty()) {
-                            binding.rvCategoriesMeal.hide()
+                    is CategoriesState.Success -> {
+                        hideElements(containerError.root, progressBar)
+                        swipeRefreshLayout.hideRefresh()
+
+                        if (it.categories.isEmpty()) {
+                            hideElements(rvCategoriesMeal)
                             return@observe
                         }
-                        adapterCategories.setCategoriesList(it.data.categories)
+
+                        adapterCategories.setCategoriesList(it.categories)
                         setupCategoriesRecyclerView()
                     }
-                    is Resource.Failure -> {
-                        progressBar.hide()
-                        swipeRefreshLayout.isRefreshing = false
-                        showToast(getString(R.string.error_detail))
+                    is CategoriesState.Failure -> {
+                        hideElements(progressBar, rvCategoriesMeal)
+                        showElements(containerError.root)
+                        swipeRefreshLayout.hideRefresh()
+
+                        btnRetry()
+
+                        if (it.error != null) {
+                            val errorMessage = getString(it.error.errorMessage)
+                            containerError.textView.text = errorMessage
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private fun btnRetry() {
+        binding.containerError.btnRetry.setRetryAction {
+            setupCategoriesMeal()
         }
     }
 

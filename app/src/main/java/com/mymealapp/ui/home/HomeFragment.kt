@@ -10,13 +10,19 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mymealapp.R
-import com.mymealapp.core.*
+import com.mymealapp.core.Resource
+import com.mymealapp.core.hide
+import com.mymealapp.core.hideElements
+import com.mymealapp.core.hideRefresh
+import com.mymealapp.core.loadImage
+import com.mymealapp.core.setRetryAction
+import com.mymealapp.core.setupRecyclerView
+import com.mymealapp.core.show
+import com.mymealapp.core.showElements
 import com.mymealapp.data.model.Meal
 import com.mymealapp.databinding.FragmentHomeBinding
+import com.mymealapp.domain.common.getSuccess
 import com.mymealapp.ui.home.adapter.CategoryAdapter
 import com.mymealapp.ui.home.adapter.PopularAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,12 +84,12 @@ class HomeFragment : Fragment() {
             with(binding) {
                 when (it) {
                     is Resource.Loading -> {
-                        if (swipeRefreshLayout.isRefreshing) {
-                            progressBar.hide()
-                        } else {
-                            progressBar.show()
+                        hideElements(containerError.root)
+                        progressBar.apply {
+                            if (swipeRefreshLayout.isRefreshing) hide() else show()
                         }
                     }
+
                     is Resource.Success -> {
                         swipeRefreshLayout.isRefreshing = false
                         progressBar.hide()
@@ -95,15 +101,37 @@ class HomeFragment : Fragment() {
                         adapterPopular.setMealPopularList(it.data.second.meals)
 
                         setupCategoriesRecyclerView()
-                        adapterCategory.setCategoryList(it.data.third.categories)
+                        it.data.third.getSuccess()
+                            ?.let { it1 -> adapterCategory.setCategoryList(it1) }
                     }
+
                     is Resource.Failure -> {
-                        swipeRefreshLayout.isRefreshing = false
-                        progressBar.hide()
-                        showToast(getString(R.string.error_detail))
+                        swipeRefreshLayout.hideRefresh()
+                        hideElements(
+                            progressBar,
+                            rvPopularMeal,
+                            rvCategoriesMeal,
+                            cardViewHomeRandom,
+                            txtTitleRandom,
+                            txtTitleCategories,
+                            txtTitlePopular
+                        )
+                        showElements(containerError.root)
+
+                        val errorMessage = getString(R.string.not_found_error)
+                        containerError.textView.text = errorMessage
+
+                        btnRetry()
+
                     }
                 }
             }
+        }
+    }
+
+    private fun btnRetry() {
+        binding.containerError.btnRetry.setRetryAction {
+            setupAllMealsInHome()
         }
     }
 
@@ -117,13 +145,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupShowRandomMeals(item: Meal) {
-        Glide.with(binding.root.context)
-            .load(item.image)
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .error(R.drawable.gradient)
-            .centerCrop()
-            .into(binding.imgRandomMeal)
+        loadImage(binding.root.context, item.image.toString(), binding.imgRandomMeal)
 
         binding.cardViewHomeRandom.setOnClickListener {
             findNavController().navigate(
