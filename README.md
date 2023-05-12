@@ -1,7 +1,4 @@
 # Meal App
-
-Aplicación de recetas de comidas de todo el mundo.
-
  
 Herramientas utilizadas:
 - Estructura de aplicaciones Android.
